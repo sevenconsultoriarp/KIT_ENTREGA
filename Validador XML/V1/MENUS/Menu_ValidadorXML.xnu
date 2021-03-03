@@ -1,0 +1,291 @@
+<Menu Status="Enable">
+	<Title lang="pt">Validador XML</Title>
+	<Title lang="es">Validador XML</Title>
+	<Title lang="en">Validador XML</Title>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Cadastro de Campos das Regras</Title>
+		<Title lang="es">Cadastro de Campos das Regras</Title>
+		<Title lang="en">Cadastro de Campos das Regras</Title>
+		<Function>F7VXML01</Function>
+		<Type>03</Type>
+		<Access>xxxxxxxxxx</Access>
+		<Module>98</Module>
+		<Owner>0</Owner>
+		<KeyWord>
+			<KeyWord lang="pt"></KeyWord>
+			<KeyWord lang="es"></KeyWord>
+			<KeyWord lang="en"></KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Cadastro de Regras</Title>
+		<Title lang="es">Cadastro de Regras</Title>
+		<Title lang="en">Cadastro de Regras</Title>
+		<Function>F7VXML02</Function>
+		<Type>03</Type>
+		<Access>xxxxxxxxxx</Access>
+		<Module>98</Module>
+		<Owner>0</Owner>
+		<KeyWord>
+			<KeyWord lang="pt"></KeyWord>
+			<KeyWord lang="es"></KeyWord>
+			<KeyWord lang="en"></KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Log das Divergências</Title>
+		<Title lang="es">Log das Divergências</Title>
+		<Title lang="en">Log das Divergências</Title>
+		<Function>F7VXML03</Function>
+		<Type>03</Type>
+		<Access>xxxxxxxxxx</Access>
+		<Module>98</Module>
+		<Owner>0</Owner>
+		<KeyWord>
+			<KeyWord lang="pt"></KeyWord>
+			<KeyWord lang="es"></KeyWord>
+			<KeyWord lang="en"></KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Pré Nota de Entrada</Title>
+		<Title lang="es">Fact. Prev de Entrada</Title>
+		<Title lang="en">Incoming Pro Forma Invoice</Title>
+		<Function>MATA140</Function>
+		<Type>1</Type>
+		<Tables>SA2</Tables>
+		<Tables>SB1</Tables>
+		<Tables>SB2</Tables>
+		<Tables>SC7</Tables>
+		<Tables>SD1</Tables>
+		<Tables>SDA</Tables>
+		<Tables>SF1</Tables>
+		<Tables>SB9</Tables>
+		<Tables>SDE</Tables>
+		<Access>xxxxxxxxxx</Access>
+		<Module>02</Module>
+		<Owner>2</Owner>
+		<KeyWord>
+			<KeyWord lang="pt">Documento,entrada,pedido,recebimento</KeyWord>
+			<KeyWord lang="es">Documento,entrada,pedido,cobro</KeyWord>
+			<KeyWord lang="en">Document,entry,order,receiving</KeyWord>
+		</KeyWord>
+	</MenuItem>			
+	<MenuItem Status="Enable">
+		<Title lang="pt">Documento Entrada</Title>
+		<Title lang="es">Documento Entrada</Title>
+		<Title lang="en">Entry Document</Title>
+		<Function>MATA103</Function>
+		<Type>1</Type>
+		<Tables>SA2</Tables>
+		<Tables>SA5</Tables>
+		<Tables>SB2</Tables>
+		<Tables>SB5</Tables>
+		<Tables>SB8</Tables>
+		<Tables>SBJ</Tables>
+		<Tables>SC7</Tables>
+		<Tables>SD1</Tables>
+		<Tables>SE1</Tables>
+		<Tables>SE2</Tables>
+		<Tables>SE3</Tables>
+		<Tables>SE4</Tables>
+		<Tables>SEF</Tables>
+		<Tables>SF1</Tables>
+		<Tables>SF3</Tables>
+		<Tables>SF4</Tables>
+		<Tables>SI1</Tables>
+		<Tables>SI2</Tables>
+		<Tables>SI5</Tables>
+		<Tables>SI6</Tables>
+		<Tables>SI7</Tables>
+		<Tables>SED</Tables>
+		<Tables>SF9</Tables>
+		<Tables>SN1</Tables>
+		<Tables>SN2</Tables>
+		<Tables>SN3</Tables>
+		<Tables>SN4</Tables>
+		<Tables>SN5</Tables>
+		<Tables>SD5</Tables>
+		<Tables>SDS</Tables>
+		<Access>xxxxxxxxxx</Access>
+		<Module>02</Module>
+		<Owner>2</Owner>
+		<KeyWord>
+			<KeyWord lang="pt">Nota,fiscal,entrada,nf</KeyWord>
+			<KeyWord lang="es">Factura,factura,entrada,fact</KeyWord>
+			<KeyWord lang="en">Invoice,fiscal,entry,invoice</KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Conhecimento de Frete</Title>
+		<Title lang="es">Conocimiento de Flete</Title>
+		<Title lang="en">Bill Of Lading</Title>
+		<Function>MATA116</Function>
+		<Type>1</Type>
+		<Tables>QEL</Tables>
+		<Tables>QEP</Tables>
+		<Tables>QEY</Tables>
+		<Tables>QEZ</Tables>
+		<Tables>SF8</Tables>
+		<Tables>SDE</Tables>
+		<Tables>SD4</Tables>
+		<Tables>SC5</Tables>
+		<Tables>SC6</Tables>
+		<Tables>SD7</Tables>
+		<Tables>SDA</Tables>
+		<Tables>QEA</Tables>
+		<Tables>QEK</Tables>
+		<Access>xxxxxxxxxx</Access>
+		<Module>02</Module>
+		<Owner>2</Owner>
+		<KeyWord>
+			<KeyWord lang="pt">Nota,conhecimento,documento,transporte,ct</KeyWord>
+			<KeyWord lang="es">Factura,conocimiento,documento,transporte,ct</KeyWord>
+			<KeyWord lang="en">Invoice,knowledge,document,transport,ct</KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Liberar de Documentos</Title>
+		<Title lang="es">Liberar Documentos</Title>
+		<Title lang="en">Document Release</Title>
+		<Function>MATA094</Function>
+		<Type>1</Type>
+		<Tables>SC1</Tables>
+		<Tables>SC7</Tables>
+		<Tables>SCR</Tables>
+		<Tables>SCS</Tables>
+		<Tables>DBK</Tables>
+		<Tables>DBL</Tables>
+		<Access>xxxxxxxxxx</Access>
+		<Module>02</Module>
+		<Owner>2</Owner>
+		<KeyWord>
+			<KeyWord lang="pt">Documento,liberação,aprovação,análise</KeyWord>
+			<KeyWord lang="es">Documento,autorizacion,aprobacion,analisis</KeyWord>
+			<KeyWord lang="en">Document,release,approval,analysis</KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Clientes</Title>
+		<Title lang="es">Clientes</Title>
+		<Title lang="en">Customers</Title>
+		<Function>MATA030</Function>
+		<Type>1</Type>
+		<Tables>SA1</Tables>
+		<Tables>SA3</Tables>
+		<Tables>SA4</Tables>
+		<Tables>SA6</Tables>
+		<Tables>SC5</Tables>
+		<Tables>SD1</Tables>
+		<Tables>SE1</Tables>
+		<Tables>SET</Tables>
+		<Tables>VCB</Tables>
+		<Tables>SAO</Tables>
+		<Tables>AC8</Tables>
+		<Tables>AC9</Tables>
+		<Tables>JA2</Tables>
+		<Tables>SUA</Tables>
+		<Tables>SUC</Tables>
+		<Tables>SF2</Tables>
+		<Tables>DAF</Tables>
+		<Tables>DAD</Tables>
+		<Tables>SF1</Tables>
+		<Tables>SAE</Tables>
+		<Access>xxxxxxxxxx</Access>
+		<Module>02</Module>
+		<Owner>5</Owner>
+		<KeyWord>
+			<KeyWord lang="pt">Licitante,empresa,comprador</KeyWord>
+			<KeyWord lang="es">Licitante,empresa,comprador</KeyWord>
+			<KeyWord lang="en">Bidder,company,purchaser</KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Fornecedores</Title>
+		<Title lang="es">Proveedores</Title>
+		<Title lang="en">Suppliers</Title>
+		<Function>MATA020</Function>
+		<Type>1</Type>
+		<Tables>SA5</Tables>
+		<Tables>SC7</Tables>
+		<Tables>SE2</Tables>
+		<Tables>SF1</Tables>
+		<Tables>SED</Tables>
+		<Tables>SE4</Tables>
+		<Tables>SAD</Tables>
+		<Tables>AC8</Tables>
+		<Tables>AC9</Tables>
+		<Access>xxxxxxxxxx</Access>
+		<Module>02</Module>
+		<Owner>2</Owner>
+		<KeyWord>
+			<KeyWord lang="pt">Participante,empresa,licitante,provedor</KeyWord>
+			<KeyWord lang="es">Participante,empresa,licitante,proveedor</KeyWord>
+			<KeyWord lang="en">Employee,company,bidder,provider</KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Produtos</Title>
+		<Title lang="es">Productos</Title>
+		<Title lang="en">Products</Title>
+		<Function>MATA010</Function>
+		<Type>1</Type>
+		<Tables>SA5</Tables>
+		<Tables>SB2</Tables>
+		<Tables>SB3</Tables>
+		<Tables>SB4</Tables>
+		<Tables>SB5</Tables>
+		<Tables>SB6</Tables>
+		<Tables>SB8</Tables>
+		<Tables>SBJ</Tables>
+		<Tables>SBF</Tables>
+		<Tables>SDD</Tables>
+		<Tables>SC1</Tables>
+		<Tables>SC2</Tables>
+		<Tables>SC4</Tables>
+		<Tables>SC6</Tables>
+		<Tables>SC7</Tables>
+		<Tables>SD1</Tables>
+		<Tables>SD2</Tables>
+		<Tables>SD3</Tables>
+		<Tables>SD4</Tables>
+		<Tables>SG1</Tables>
+		<Tables>SG2</Tables>
+		<Tables>SI1</Tables>
+		<Tables>SI3</Tables>
+		<Tables>SYD</Tables>
+		<Tables>SI4</Tables>
+		<Tables>SIC</Tables>
+		<Tables>SID</Tables>
+		<Tables>SJ2</Tables>
+		<Tables>SBG</Tables>
+		<Tables>SBS</Tables>
+		<Access>xxxxxxxxxx</Access>
+		<Module>02</Module>
+		<Owner>2</Owner>
+		<KeyWord>
+			<KeyWord lang="pt">Item,serviços</KeyWord>
+			<KeyWord lang="es">Item,servicios</KeyWord>
+			<KeyWord lang="en">Item,services</KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Produtos X Fornecedor</Title>
+		<Title lang="es">Productos X Proveedor</Title>
+		<Title lang="en">Products X Supplier</Title>
+		<Function>MATR190</Function>
+		<Type>1</Type>
+		<Tables>SA2</Tables>
+		<Tables>SB1</Tables>
+		<Tables>SA5</Tables>
+		<Tables>SAD</Tables>
+		<Access>xxxxxxxxxx</Access>
+		<Module>02</Module>
+		<Owner>2</Owner>
+		<KeyWord>
+			<KeyWord lang="pt">Produto,item,licitante,participante,empresa</KeyWord>
+			<KeyWord lang="es">Producto,item,licitante,participante,empresa</KeyWord>
+			<KeyWord lang="en">Product,item,bidder,participant,company</KeyWord>
+		</KeyWord>
+	</MenuItem>
+</Menu>
