@@ -1,0 +1,11 @@
+Compilation Result
+
+Show 
+50
+ entries
+Search:
+File Name	Result	Message	Detail	Path
+ESP2NOME_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/PE/ESP2NOME_pe.prw
+ESPNOME_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/PE/ESPNOME_pe.prw
+Showing 1 to 2 of 2 entries
+PREVIOUS1NEXT

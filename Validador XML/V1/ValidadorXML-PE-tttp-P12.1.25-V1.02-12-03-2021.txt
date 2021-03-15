@@ -1,0 +1,17 @@
+Compilation Result
+
+Show 
+50
+ entries
+Search:
+File Name	Result	Message	Detail	Path
+MT100TOK_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/PE/MT100TOK_pe.prw
+MT103FIM_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/PE/MT103FIM_pe.prw
+MT116AGR_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/PE/MT116AGR_pe.prw
+MT116TOK_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/PE/MT116TOK_pe.prw
+MT140SAI_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/PE/MT140SAI_pe.prw
+MT140TOK_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/PE/MT140TOK_pe.prw
+MTA094RO_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/PE/MTA094RO_pe.prw
+MTA103MNU_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/PE/MTA103MNU_pe.prw
+Showing 1 to 8 of 8 entries
+PREVIOUS1NEXT
