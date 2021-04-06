@@ -1,0 +1,326 @@
+############################################################
+NOSSO NÚMERO
+############################################################
+[001-BANCO_DO_BRASIL]
+cBancoBoleto:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cConvenio 	:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+nDigConv 	:= oClass7VBoletoBancario:getValueBol("DIG_CONVENIO")
+cCodSeq 	:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 	:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cCarteira 	:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cBase 		:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cDV 		:= ""
+cNossoNro	:= ""
+lRecalcDV	:= ( Empty(cCodSeq) )
+Iif( nDigConv == 4 .And. Empty(nDigSeq), nDigSeq := 07, "")
+Iif( nDigConv == 7 .And. Empty(nDigSeq), nDigSeq := 10, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+cBasePadrao := ( cBase := AllTrim(cConvenio) + cCodSeq ) 
+cBaseRecalcDV := ( cBase := SubStr(cBase,01,Len(cBase)-1) )
+Iif( cCarteira $ "01,17,18" .And. nDigConv == 4, Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao ) ,"")
+Iif( cCarteira $ "01,17,18" .And. nDigConv == 6, Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao ) ,"")
+Iif( cCarteira $ "01,17,18" .And. nDigConv == 7, cBase := cBasePadrao ,"")
+Iif( nDigConv == 4,	cDV	:= libSeven.u_Modulo11(cBase,9,2,,cBancoBoleto) , "")
+Iif( nDigConv == 6 .And. Len(cBase) == 11, cDV := libSeven.u_Modulo11(cBase,9,2,,cBancoBoleto) , "")
+Iif( nDigConv == 6 .And. Len(cBase) == 17, cDV := "" , "")
+Iif( nDigConv == 6 .And. !( StrZero(Len(cBase),02) $ "11,17" ) , ( MsgStop("Verifique Configuração de Carteira, Convênio e nº de dígitos da sequência para geração do nosso número do Boleto Banco do Brasil","NOSSO NÚMERO - BOLETO - BB") , cDV := "" ) , "")
+Iif( nDigConv == 7, cDV := "" , "")
+Iif( cCarteira $ "01,17,18" , cNossoNro := cBase + cDV ,"")
+Iif( cCarteira $ "11" , cNossoNro := StrZero(0,17) ,"") /*"00000000000000000"*/
+Iif( !( cCarteira $ "01,17,18,11" ) , ( MsgStop("Não existe configuração para a carteira " + cCarteira + " do Boleto Banco do Brasil","NOSSO NÚMERO - BOLETO - BB") , "")
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[033-BANCO_SANTANDER_BANESPA]
+cBancoBoleto:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+nBytesCNAB 	:= oClass7VBoletoBancario:getValueBol("BYTES_CNAB")
+cCodSeq 	:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 	:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cBase 		:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cDV 		:= ""
+cNossoNro	:= ""
+lRecalcDV	:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq) .And. nBytesCNAB == 400, nDigSeq := 07, "") /*8 Dígitos => Banco 008 (Meridional), 7 Dígitos => Banco 353 (Santander)*/
+Iif( nBytesCNAB <> 400, nDigSeq := 12, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+cBasePadrao := ( cBase := cCodSeq )
+cBaseRecalcDV := ( cBase := SubStr(cBase,01,Len(cBase)-1) )
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+cDV		  	:= libSeven.u_Modulo11(cBase,2,9,,cBancoBoleto)
+cNossoNro 	:= AllTrim(cBase) + cDV
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[041-BANCO_BANRISUL]
+cBancoBoleto 	:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cCodSeq 		:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 		:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cBase 			:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+lRecalcDV		:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq), nDigSeq := 08, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+cBaseRecalcDV 	:= SubStr(cBase,01,Len(cBase)-1)
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+cDVCampoLivre	:= libSeven.u_Modulo10(cBase,2,1,,.F.,"Divisor",.T.) /*Sintaxe: modulo10(cStr,nMultIni,nMultFim,cConstante,lSomaAlg,cTipo,lDeduz9)*/
+cDV2CampoLivre	:= libSeven.u_Modulo11(cBase + cDVCampoLivre,2,7,,cBancoBoleto)
+Iif(Len(cDV2CampoLivre) > 1,( cDVCampoLivre := Soma1(cDVCampoLivre), cDV2CampoLivre := libSeven.u_Modulo11(cBase + cDVCampoLivre,2,7,,cBancoBoleto) ),"") /*Se retornar mais de 1 dígito, Incrementa o DV Modulo 10 e Refaz o Cálculo*/
+cDV				:= cDVCampoLivre + cDV2CampoLivre /*2 Dígitos DV*/
+cNossoNro 		:= cBase + cDV /*8+2=10 Dígitos - Grava o Nosso Número Completo*/
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[104-BANCO_CAIXA_ECONOMICA_FEDERAL]
+cModeloCEF  	:= Upper(Alltrim(GetNewPar("7V_MODCEF", "SIGCB")))
+cBancoBoleto	:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cConvenio 		:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+nDigConv 		:= oClass7VBoletoBancario:getValueBol("DIG_CONVENIO")
+cCodSeq 		:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 		:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cBase 			:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+lRecalcDV		:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq), nDigSeq := 15, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+cBaseRecalcDV 	:= SubStr(cBase,01,Len(cBase)-1)
+Iif( cModeloCEF == "SICOB" .And. cCarteira == "12",cCodSeq := StrZero(Val(cCodSeq),9) ,"") /*9 Dígitos- Tratamento do Cód. Sequencial para que possa ser colocado em qualquer formato*/
+Iif( cModeloCEF == "SICOB" .And. cCarteira == "12",cBasePadrao := AllTrim(cConvenio) + cCodSeq ,"") /*Cobrança Simples - Boleto Impresso na Empresa*/
+Iif( cModeloCEF == "SICOB" .And. cCarteira == "14",cCodSeq := StrZero(Val(cCodSeq),8) ,"") /*8 Dígitos - Tratamento do Cód. Sequencial para que possa ser colocado em qualquer formato*/
+Iif( cModeloCEF == "SICOB" .And. cCarteira == "14",cBasePadrao := "82" + cCodSeq ,"") /*10 Dígitos*/
+Iif( cModeloCEF == "SIGCB" .And. cCarteira $ "14,24",cCodSeq := StrZero(Val(cCodSeq),15), "") /*15 Dígitos - Tratamento do Cód. Sequencial para que possa ser colocado em qualquer formato*/
+Iif( cModeloCEF == "SIGCB" .And. cCarteira $ "14,24",cBasePadrao := cCarteira + cCodSeq, "") /*17 Dígitos*/
+Iif( cModeloCEF == "SIGCB" .And. cCarteira $ "14,24",cCodSeq := StrZero(Val(cCodSeq),Len(SEE->EE_FAXATU)), "")
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+cDV 		:= modulo11(cBase,2,9,,cBancoBoleto)
+cNossoNro 	:= cBase + cDV
+Iif( cModeloCEF == "SICOB" .And. !( cCarteira $ "12,14"), MsgStop("Não existe tratamento específico da Carteira " + AllTrim(cCarteira) + " - Modelo CEF: " + cModeloCEF + " para geração do nosso número do Banco Caixa Econômica.","NOSSO NÚMERO - BOLETO - CEF"), "") 
+Iif( cModeloCEF == "SIGCB" .And. !( cCarteira $ "14,24"), MsgStop("Não existe tratamento específico da Carteira " + AllTrim(cCarteira) + " - Modelo CEF: " + cModeloCEF + " para geração do nosso número do Banco Caixa Econômica.","NOSSO NÚMERO - BOLETO - CEF"), "")
+Iif( cModeloCEF $ "SICOB,SIGCB", MsgStop("Não informado um Modelo CEF válido (" + cModeloCEF + ") para geração do nosso número do Banco Caixa Econômica.","NOSSO NÚMERO - BOLETO - CEF")
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[237-BANCO_BRADESCO]
+cBancoBoletoBradesco	:= "237"
+cBancoBoletoBicBanco	:= "320" /*Correspondente Bradesco*/
+cBancoBoletoSafra		:= "422" /*Correspondente Bradesco*/
+cBancoBoletoRural		:= "453" /*Correspondente Bradesco*/
+cBancoBoleto 			:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo			:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cCodSeq 				:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 				:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cCarteira 				:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cConvenio 				:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+cBase 					:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cAgencTit				:= oClass7VBoletoBancario:getValueBol("AGENCIATIT")
+cContrato				:= oClass7VBoletoBancario:getValueBol("CONTRATO")
+dEmissao				:= oClass7VBoletoBancario:getValueBol("EMISSAO")
+cDV 					:= ""
+cNossoNro				:= ""
+lRecalcDV				:= ( Empty(cCodSeq) )
+Iif( cBancoTitulo == cBancoBoletoBradesco .And. Empty(nDigSeq), nDigSeq := 11, "") /*Sem Correspondente*/
+Iif( cBancoTitulo == cBancoBoletoBicBanco .And. Empty(nDigSeq), nDigSeq := 06, "")
+Iif( cBancoTitulo == cBancoBoletoRural .And. Empty(nDigSeq), nDigSeq := 07, "")
+Iif( cBancoTitulo == cBancoBoletoSafra .And. Empty(nDigSeq), nDigSeq := 09, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+Iif( cBancoTitulo == cBancoBoletoBradesco , cBasePadrao := cCodSeq , "") /*11 Dígitos*/
+Iif( cBancoTitulo == cBancoBoletoBicBanco , cBasePadrao := Left(cCarteira,2) + Left(cConvenio,5) + cCodSeq , "") /*2+5(2=Radical/3=Matrícula)+6=13 Dígitos*/
+Iif( cBancoTitulo == cBancoBoletoRural , cBasePadrao := Left(cCarteira,2) + Left(cConvenio,4) + cCodSeq , "") /*2+4+7=13 Dígitos*/
+Iif( cBancoTitulo == cBancoBoletoSafra , cBasePadrao	:= Left(cCarteira,2) + Right(StrZero(Year(dEmissao),4),2) + cCodSeq , "") /*2+2+9=13 Dígitos*/
+cBaseRecalcDV 	:= SubStr(cBase,01,Len(cBase)-1)
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+Iif( cBancoTitulo == cBancoBoletoBradesco , cDV := libSeven.u_Modulo11(cCarteira + cBase,2,7,,cBancoBoleto) , "") /*12 Dígitos no Total com Dígito Verif. - Modulo 11 sobre Carteira + Nosso Nro*/
+Iif( cBancoTitulo == cBancoBoletoBicBanco , cDV := libSeven.u_Modulo11(cBase,2,7,,cBancoBoleto) , "") /*14 Dígitos no Total com Dígito Verif.*/
+Iif( cBancoTitulo == cBancoBoletoRural , cDV := libSeven.u_Modulo11(cBase,2,7,,cBancoBoleto) , "") /*14 Dígitos no Total com Dígito Verif.*/
+Iif( cBancoTitulo == cBancoBoletoSafra , cDV := libSeven.u_Modulo11(cBase,2,7,,cBancoBoleto) , "") /*14 Dígitos no Total com Dígito Verif.*/
+cNossoNro := cBase + cDV /*11+1=12 - Grava o Nosso Número Completo*/
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[246-BANCO_ABC]
+cBancoBoleto 	:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cAgencSDV		:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cCodSeq 		:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 		:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cBase 			:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cDV 			:= ""
+cNossoNro		:= ""
+lRecalcDV		:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq), nDigSeq := 10, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+cBasePadrao 	:= cAgencSDV + cCarteira + cCodSeq	
+cBaseRecalcDV 	:= SubStr(cBase,01,Len(cBase)-1)
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+cDV	   	  		:= libSeven.u_Modulo10(cBase,2,1,,,"Divisor")
+cNossoNro 		:= cCodSeq + cDV /*10+1=11 Dígitos*/
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[399-BANCO_HSBC]
+/*"CNR"=Cobrança com Registro*/
+cBancoBoleto 	:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cAgencSDV		:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cCodSeq 		:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 		:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+nDigConv 		:= oClass7VBoletoBancario:getValueBol("DIG_CONVENIO")
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cConvenio 		:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+cBase 			:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+dVenctoBoleto	:= oClass7VBoletoBancario:getValueBol("VENCTO_BOLETO")
+cVencto	  		:= DTOS(dVenctoBoleto) /*Define Vencimento - Converte para AAAAMMDD - Vencto Real ou AAAAMMDD - Vencto Original*/
+cDV 			:= ""
+cNossoNro		:= ""
+lRecalcDV		:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq), nDigSeq := 9, "")
+Iif( Empty(nDigConv), nDigConv := 7, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+Iif(!lRecalcDV,cConvenio := StrZero(Val(cConvenio),nDigConv),"")
+Iif(lRecalcDV,cCodSeq := Left(AllTrim(cBase),nDigSeq),"")
+cDV1			:= libSeven.u_Modulo11(cCodSeq,9,2,,cBancoBoleto,3),"") /*3=TIPO_NOSSO_NUMERO_1DIGITO*/
+cDV2			:= '4'
+cCodAux			:= ( cCodSeq + cDV1 + cDV2 )
+nDataAux		:= Val(StrTran(libSeven.u_formatDate(cVencto,"DD/MM/AA" ), '/',''))
+cBasePadrao 	:= cValToChar( Val(cCodAux) + Val(cConvenio) + nDataAux )
+/*cBaseRecalcDV := SubStr(cBase,01,Len(cBase)-1)*/
+cBaseRecalcDV 	:= cValToChar( Val(cCodAux) + Val(cConvenio) + nDataAux )
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+cDV	   	  		:= libSeven.u_Modulo11(cBase,9,2,,cBancoBoleto,3) /*3=TIPO_NOSSO_NUMERO_1DIGITO*/
+cNossoNro 		:= StrZero( Val(cCodAux + cDV),13)
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[341-BANCO_ITAU]
+cBancoBoleto:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cAgencSDV	:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cContaSDV	:= oClass7VBoletoBancario:getValueBol("CONTA_SDV_BOLETO")
+cCodSeq 	:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 	:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cCarteira 	:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cNossNroOld	:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cBase 		:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cDV 		:= ""
+cNossoNro	:= ""
+lRecalcDV	:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq), nDigSeq := 08, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+cBasePadrao := ( cCarteira + cCodSeq ) 
+cBaseRecalcDV := ( cCarteira + SubStr(cNossNroOld,01,08) )
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+Iif( Len(AllTrim(cCarteira)) <> 3 , ( MsgStop("A carteira deve ter 3 dígitos " + cCarteira + " do Boleto Banco Itaú","NOSSO NÚMERO - BOLETO - ITAÚ") , ""),"")
+Iif( cCarteira $ "126,131,145,150,168" , cDV:= libSeven.u_Modulo10(cBase,2,1,,,"Divisor") , cDV:= libSeven.u_Modulo10(cAgencSDV+cContaSDV+cBase,2,1,,,"Divisor")  )
+Iif( !Empty(cCodSeq), cNossoNro := AllTrim(cCodSeq) + cDV, cNossoNro := SubStr(cBase,4) + cDV )
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[422-BANCO_SAFRA]
+cBancoBoletoItau	:= "341"
+cBancoBoletoSafra	:= "422"
+cBancoBoleto 		:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo		:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cAgencSDV			:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cContaSDV			:= oClass7VBoletoBancario:getValueBol("CONTA_SDV_BOLETO")
+cCodSeq 			:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 			:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cCarteira 			:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cBase 				:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cDV 				:= ""
+cNossoNro			:= ""
+lRecalcDV			:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq), nDigSeq := 08, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+Iif( cBancoTitulo == cBancoBoletoSafra, cBasePadrao := cCodSeq, "")
+Iif( cBancoTitulo == cBancoBoletoItau, cBasePadrao := cCarteira + AllTrim(cCodSeq), "")
+cBaseRecalcDV 	:= SubStr(cBase,01,Len(cBase)-1)
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+Iif( cBancoTitulo == cBancoBoletoSafra, cDV := libSeven.u_Modulo11(cBase,2,9,,cBancoBoleto) , "")
+Iif( cBancoTitulo == cBancoBoletoSafra .And. lRecalcDV .And. Len(cBase) == 13,cDV := libSeven.u_Modulo11(cBase,2,7,,cBancoBoleto),"") /*Caso de Banco Correspondente - Usado na Opção de Recálculo do DV*/
+Iif( cBancoTitulo == cBancoBoletoSafra .And. lRecalcDV .And. Len(cBase) <> 13,cDV := libSeven.u_Modulo11(cBase,2,9,,cBancoBoleto),"")
+Iif( cBancoTitulo == cBancoBoletoItau .And. cCarteira $ "126,131,145,150,168", cDV := libSeven.u_Modulo10(cBase,2,1,,,"Divisor") ,"") /*Carteiras Escriturais e na Modalidade Direta*/
+Iif( cBancoTitulo == cBancoBoletoItau .And. !( cCarteira $ "126,131,145,150,168" ), cDV := libSeven.u_Modulo10(cAgencSDV + cContaSDV + cBase,2,1,,,"Divisor"), "")
+cNossoNro 		:= cBase + cDV /*8+1=9 Dígitos ou 13+1=14 - Grava o Nosso Número Completo*/
+Iif( cBancoTitulo == cBancoBoletoItau .And. !lRecalcDV, cNossoNro := AllTrim(cCodSeq) + cDV, "")
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[745-BANCO_CITIBANK]
+cBancoBoleto:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cCodSeq 	:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 	:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cCarteira 	:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cBase 		:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cDV 		:= ""
+cNossoNro	:= ""
+lRecalcDV	:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq), nDigSeq := 11, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+cBasePadrao 	:= cCodSeq /*11 Dígitos*/
+cBaseRecalcDV 	:= SubStr(cBase,01,Len(cBase)-1)
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+cDV	   	  	:= libSeven.u_Modulo11(cBase,2,9,,cBancoBoleto) /*12 Dígitos no Total com Dígito Verif.*/
+cNossoNro 	:= cBase + cDV /*11+1=12 - Grava o Nosso Número Completo*/
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[755-BANCO_BANK_OF_AMERICA]
+cBancoBoleto 	:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cAgencSDV		:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cCodSeq 		:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 		:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cBase 			:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cDV 			:= ""
+cNossoNro		:= ""
+lRecalcDV		:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq), nDigSeq := 10, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+cBasePadrao 	:= StrZero(Val(AllTrim(cCarteira)),02) + cCodSeq
+cBaseRecalcDV 	:= SubStr(cBase,01,Len(cBase)-1)
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+cDV	   	  		:= libSeven.u_Modulo11(cBase,2,7,,cBancoBoleto)
+cNossoNro 		:= "0" + cCodSeq + cDV /*1+10+1=12 Dígitos*/
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)
+
+[756-BANCO_BANCOOB_SICOOB]
+cBancoBoleto 	:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cAgencia		:= oClass7VBoletoBancario:getValueBol("AGENCIA_BOLETO")
+cConta			:= oClass7VBoletoBancario:getValueBol("CONTA_BOLETO")
+cCodSeq 		:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+nDigSeq 		:= oClass7VBoletoBancario:getValueBol("DIG_SEQ")
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cBase 			:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cDV 			:= ""
+cNossoNro		:= ""
+lRecalcDV		:= ( Empty(cCodSeq) )
+Iif( Empty(nDigSeq), nDigSeq := 7, "")
+Iif(!lRecalcDV,cCodSeq := StrZero(Val(cCodSeq),nDigSeq),"")
+cBasePadrao 	:= StrZero(Val(AllTrim(cAgencia)),04) + StrZero(Val(cConta),10) + cCodSeq /*4+10+7 = 21 Dígitos*/
+cBaseRecalcDV 	:= SubStr(cBase,01,Len(cBase)-1)
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+cDV	   	  		:= libSeven.u_Modulo11(cBase,,,"3791",cBancoBoleto) /*11 Dígitos no Total com Dígito Verif. - Modulo 11 sobre Carteira + Nosso Nro*/
+cNossoNro 		:= cBase + cDV /*7+1=8 - Grava o Nosso Número Completo*/
+oClass7VBoletoBancario:setValueBol("COD_SEQUENCIA",cCodSeq)
+oClass7VBoletoBancario:setValueBol("BASE_NOSSONRO",cBase)
+oClass7VBoletoBancario:setValueBol("DV_NOSSONRO",cDV)
+oClass7VBoletoBancario:setValueBol("NOSSONRO",cNossoNro)

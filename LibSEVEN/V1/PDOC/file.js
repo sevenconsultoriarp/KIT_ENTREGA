@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // precorre a arvore para montar o menu
-  const file = getUrlParameter('file');
-  const fileData = dataProject.files.find((x) => {
+  let file = getUrlParameter('file');
+  let fileData = dataProject.files.find((x) => {
     return x.fileName === file;
   });
   if (fileData) {
@@ -10,7 +10,7 @@ $(document).ready(function() {
       $('#description').html(fileData.description);
     }
     let content = '';
-    const htmlModel = $('#content')[0].outerHTML.replace('id="content"', '');
+    let htmlModel = $('#content')[0].outerHTML.replace('id="content"', '');
     for (let key = 0; key < fileData.functionList.length; key++) {
       content += functionHtml(fileData.functionList[key], htmlModel);
     }
@@ -18,18 +18,18 @@ $(document).ready(function() {
 
     if ($('#' + getUrlParameter('anchor')).offset()) {
       $('html, body').animate(
-          {
-            scrollTop: $('#' + getUrlParameter('anchor')).offset().top,
-          },
-          500,
+        {
+          scrollTop: $('#' + getUrlParameter('anchor')).offset().top,
+        },
+        500
       );
     }
   }
 
   // Botão Go Top
-  const btn = $('#btnToTop');
+  var btn = $('#btnToTop');
 
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     if ($(window).scrollTop() > 300) {
       btn.addClass('show');
     } else {
@@ -37,31 +37,32 @@ $(document).ready(function() {
     }
   });
 
-  btn.on('click', function(e) {
+  btn.on('click', function (e) {
     e.preventDefault();
-    $('html, body').animate({scrollTop: 0}, '300');
+    $('html, body').animate({ scrollTop: 0 }, '300');
   });
+
 });
 
 function getUrlParameter(sParam) {
-  const sPageURL = window.location.search.substring(1);
-  const sURLVariables = sPageURL.split('&');
-  let sParameterName;
-  let i;
+  var sPageURL = window.location.search.substring(1),
+    sURLVariables = sPageURL.split('&'),
+    sParameterName,
+    i;
 
   for (i = 0; i < sURLVariables.length; i++) {
     sParameterName = sURLVariables[i].split('=');
 
     if (sParameterName[0] === sParam) {
-      return sParameterName[1] === undefined ?
-        true :
-        decodeURIComponent(sParameterName[1]);
+      return sParameterName[1] === undefined
+        ? true
+        : decodeURIComponent(sParameterName[1]);
     }
   }
 }
 
 function functionHtml(functionObject, functionHtml) {
-  const fixedProperties = [
+  let fixedProperties = [
     'functionName',
     'description',
     'author',
@@ -75,44 +76,44 @@ function functionHtml(functionObject, functionHtml) {
     'see',
   ];
 
-  const nameSplit = functionObject.functionName.split('::');
+  let nameSplit = functionObject.functionName.split('::');
   if (functionObject.functionName.search('::') && nameSplit.length > 1) {
     functionHtml = functionHtml.replace(
-        /\%functionName\%/g,
-        nameSplit[1] + ` <small> of Class ${nameSplit[0]} </small>`,
+      /\%functionName\%/g,
+      nameSplit[1] + ` <small> of Class ${nameSplit[0]} </small>`
     );
   } else {
     functionHtml = functionHtml.replace(
-        /\%functionName\%/g,
-        functionObject.functionName,
+      /\%functionName\%/g,
+      functionObject.functionName
     );
   }
 
   functionHtml = functionHtml.replace(
-      '%functionAnchor%',
-      functionObject.functionName.replace(new RegExp(':', 'g'), '_'),
+    '%functionAnchor%',
+    functionObject.functionName.replace(new RegExp(":", 'g'), "_")
   );
 
   functionHtml = functionHtml.replace(
-      '%description%',
-      functionObject.description,
+    '%description%',
+    functionObject.description
   );
 
   functionHtml = functionHtml.replace(
-      '%type%',
-    functionObject.type ? functionObject.type : '',
+    '%type%',
+    functionObject.type ? functionObject.type : ''
   );
   functionHtml = functionHtml.replace(
-      '%author%',
-    functionObject.author ? functionObject.author : '',
+    '%author%',
+    functionObject.author ? functionObject.author : ''
   );
   functionHtml = functionHtml.replace(
-      '%since%',
-    functionObject.since ? functionObject.since : '',
+    '%since%',
+    functionObject.since ? functionObject.since : ''
   );
   functionHtml = functionHtml.replace(
-      '%version%',
-    functionObject.version ? functionObject.version : '',
+    '%version%',
+    functionObject.version ? functionObject.version : ''
   );
 
   let sintaxe = functionObject.functionName.replace('::', '():') + '(';
@@ -125,7 +126,7 @@ function functionHtml(functionObject, functionHtml) {
     param += '<thead> <tr>';
     param += '    <th>Nome</th>';
     param += '    <th>Tipo</th>';
-    // param += "    <th>Uso</th>";
+    param += "    <th>Uso</th>";
     param += '    <th>Descrição</th>';
     param += '  </tr> </thead> <tbody>';
     // param += "  </thead> <tbody>";
@@ -136,7 +137,7 @@ function functionHtml(functionObject, functionHtml) {
 
       param += '<tr><td>' + functionObject.param[i].name + '</td>';
       param += '<td>' + functionObject.param[i].type + '</td>';
-      // param += '<td>' + functionObject.param[i].obrigatory + '</td>';
+      param += '<td>' + (functionObject.param[i].obrigatory ? "Obrigatório" : "Opcional") + '</td>';
       param += '<td>' + functionObject.param[i].description + '</td></tr>';
     }
 
@@ -216,7 +217,7 @@ function functionHtml(functionObject, functionHtml) {
   functionHtml = functionHtml.replace('%link%', see);
 
   let otherInfo = '';
-  for (const prop in functionObject) {
+  for (var prop in functionObject) {
     if (
       Object.keys(functionObject).includes(prop) &&
       !fixedProperties.includes(prop) &&

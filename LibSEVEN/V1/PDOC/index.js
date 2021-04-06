@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // precorre a arvore para montar o menu
-  $('#tree').html(treeHtml({name: '', files: [], paths: [dataProject.tree]}));
-  $('label.tree-toggler').click(function() {
+  $('#tree').html(treeHtml({ name: '', files: [], paths: [dataProject.tree] }));
+  $('label.tree-toggler').click(function () {
     if ($(this).parent().children('ul.tree').css('display') === 'block') {
       $(this).parent().children('.icon').html(`
       <svg style="margin-right:10px;" class="bi bi-folder" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -24,39 +24,41 @@ $(document).ready(function() {
   ww = $(window).width();
 
   // Bloqueia a altura da lateral de navegação e busca
-  $('#lateral').css({'height': wh, 'overflow-y': 'scroll'});
+  $('#lateral').css({ height: wh, 'overflow-y': 'scroll' });
 
   $('#search-doc').autocomplete({
-    source: function(request, response) {
-      const files = Array();
-      const matcher = new RegExp(
-          $.ui.autocomplete.escapeRegex(request.term),
-          'i',
+    source: function (request, response) {
+      var files = Array();
+      var matcher = new RegExp(
+        $.ui.autocomplete.escapeRegex(request.term),
+        'i'
       );
 
       // Busca as ocorrências de identificadores (classes, métodos e funções) no arquivo de dados
       dataProject.files.forEach((file) => {
         file.functionList.forEach((func) => {
           if (matcher.test(func.functionName)) {
-            let label = '';
-            let className = '';
-            const nameSplit = func.functionName.split('::');
+
+            let label = "";            
+            let className = "";            
+            let nameSplit = func.functionName.split('::');
 
             if (func.functionName.search('::') && nameSplit.length > 1) {
-              label = nameSplit[1];
+              label = nameSplit[1]; 
               className = nameSplit[0];
             } else {
               label = func.functionName;
             }
-
+              
             files.push({
-              function: func.functionName.replace(new RegExp(':', 'g'), '_'),
+              function: func.functionName.replace(new RegExp(":", 'g'), "_"),
               type: func.type,
               file: file.fileName,
               class: className,
               label: label,
               value: label,
             });
+            
           }
         });
       });
@@ -66,32 +68,32 @@ $(document).ready(function() {
   });
 
   // Renderiza os itens da forma que quero aproveitando o bootstrap
-  $('#search-doc').autocomplete('instance')._renderItem = function(ul, item) {
+  $('#search-doc').autocomplete('instance')._renderItem = function (ul, item) {
     return $(
-        '<li class=\'list-group-item d-flex justify-content-between align-items-center\'>',
+      "<li class='list-group-item d-flex justify-content-between align-items-center'>"
     )
-        .attr('data-value', item.value)
-        .append(
-            `<a href="#" onclick="return loadIframe('file.html?file=${item.file}&anchor=${item.function}')">` +
-        item.label + (item.class ? ` <small class="text-muted">${item.class}</small>` : '') +
-          '</a>',
-        )
-        .append(
-            '<span class=\'badge badge-primary badge-pill\'>' + item.file + '</span>',
-        )
-        .appendTo(ul);
+      .attr('data-value', item.value)
+      .append(
+        `<a href="#" onclick="return loadIframe('file.html?file=${item.file}&anchor=${item.function}')">` +
+        item.label + (item.class ? ` <small class="text-muted">${item.class}</small>` : '') + 
+          '</a>'
+      )
+      .append(
+        "<span class='badge badge-primary badge-pill'>" + item.file + '</span>'
+      )
+      .appendTo(ul);
   };
 
   // Renderiza o menu da forma que quero aproveitando o bootstrap
-  $('#search-doc').autocomplete('instance')._renderMenu = function(ul, items) {
-    const that = this;
-    $.each(items, function(index, item) {
+  $('#search-doc').autocomplete('instance')._renderMenu = function (ul, items) {
+    var that = this;
+    $.each(items, function (index, item) {
       that._renderItemData(ul, item);
     });
     $(ul).addClass('list-group');
 
     // Trava a altura da lista de resultados
-    $(ul).css({'max-height': wh - 200, 'overflow-y': 'scroll'});
+    $(ul).css({ 'max-height': wh - 200, 'overflow-y': 'scroll' });
   };
 });
 
@@ -108,7 +110,7 @@ function treeHtml(object) {
     return 0;
   });
 
-  for (const i in object.paths) {
+  for (let i in object.paths) {
     html += '<li> <span class="icon"> ';
 
     if (object.paths[i].name === 'raiz') {
@@ -138,7 +140,7 @@ function treeHtml(object) {
     html += '</ul></li>';
   }
 
-  for (const i in object.files) {
+  for (let i in object.files) {
     html +=
       `<li><a href="#" onclick="return loadIframe('file.html?file=${object.files[i].uniqueName}')">` +
       object.files[i].file +
@@ -150,7 +152,7 @@ function treeHtml(object) {
 
 function loadIframe(url) {
   $('#conteudo').html(
-      `<iframe frameborder="0" src="${url}">Your browser doesn't support iframes.</iframe>`,
+    `<iframe frameborder="0" src="${url}">Your browser doesn't support iframes.</iframe>`
   );
   return false;
 }

@@ -1,0 +1,154 @@
+############################################################
+NOSSO NÚMERO FORMATADO
+############################################################
+[001-BANCO_DO_BRASIL]
+nDigConv 			:= oClass7VBoletoBancario:getValueBol("DIG_CONVENIO")
+nDigNossoNro		:= oClass7VBoletoBancario:getValueBol("DIG_NOSSONRO")
+cNossoNro 			:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNossoNroFormatado	:= cNossoNro
+Iif( nDigConv == 6 .And. nDigNossoNro == 12, cNossoNroFormatado := Left(cNossoNro,Len(cNossoNro)-1) + "-" + Right(cNossoNro,1) , "") , "")
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[041-BANCO_BANRISUL]
+cNossoNro 			:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNossoNroFormatado	:= Left(cNossoNro,Len(cNossoNro)-2) + "-" + Right(cNossoNro,2)
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[104-BANCO_CAIXA_ECONOMICA_FEDERAL]
+cModeloCEF  	:= UPPER(Alltrim(GetNewPar("7V_MODCEF", 'SIGCB')))
+cNossoNro 		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+Iif(cModeloCEF == "SICOB", cNossoNroFormatado := cNossoNro, "")
+Iif(cModeloCEF == "SIGCB", cNossoNroFormatado := SubStr(cNossoNro,1,2) + '/' + SubStr(cNossoNro,3,Len(cNossoNro)-3) + '-' + SubStr(cNossoNro,Len(cNossoNro),1) , "")
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[237-BANCO_BRADESCO]
+cBancoBoletoBradesco	:= "237"
+cBancoBoletoABC			:= "246"
+cBancoBoletoBicBanco	:= "320"
+cBancoBoletoHSBC		:= "399"
+cBancoBoletoSafra		:= "422"
+cBancoBoletoRural		:= "453"
+cBancoBoletoCitibank	:= "745"
+cBancoBoletoSICOOB		:= "756"
+cBancoBoleto 			:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo			:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cCarteira 				:= oClass7VBoletoBancario:getValueBol("IDCARTEIRA")
+cNossoNro 				:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNossoNroFormatado		:= cNossoNro
+Iif(cBancoTitulo $ cBancoBoletoBradesco + "," + cBancoBoletoABC, cNossoNroFormatado := cCarteira + "/" + Left(cNossoNro,Len(cNossoNro)-1) + "-" + Right(cNossoNro,1) ,"")
+Iif(cBancoTitulo $ cBancoBoletoHSBC + "," + cBancoBoletoSafra + "," + cBancoBoletoCitibank+ "," + cBancoBoletoSICOOB, cNossoNroFormatado := Left(cNossoNro,Len(cNossoNro)-1) + IIF(AllTrim(cCarteira) <> "CNR", "-", "") + Right(cNossoNro,1),"")
+Iif(cBancoTitulo $ cBancoBoletoBicBanco + "," + cBancoBoletoRural + "," + cBancoBoletoSafra,cNossoNroFormatado := cNossoNro,"")
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[246-BANCO_ABC]
+cBancoBoletoBradesco	:= "237"
+cBancoBoletoABC			:= "246"
+cBancoBoletoBicBanco	:= "320"
+cBancoBoletoHSBC		:= "399"
+cBancoBoletoSafra		:= "422"
+cBancoBoletoRural		:= "453"
+cBancoBoletoCitibank	:= "745"
+cBancoBoletoSICOOB		:= "756"
+cBancoBoleto 			:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo			:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cCarteira 				:= oClass7VBoletoBancario:getValueBol("IDCARTEIRA")
+cNossoNro 				:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cConvenio 				:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+cBancosContaConvenio	:= AllTrim(GetNewPar("7V_BCOCONV","246,755"))
+cNossoNroFormatado		:= cNossoNro
+Iif(cBancoTitulo $ cBancoBoletoBradesco + "," + cBancoBoletoABC, cNossoNroFormatado := cCarteira + "/" + Left(cNossoNro,Len(cNossoNro)-1) + "-" + Right(cNossoNro,1) ,"")
+Iif(cBancoTitulo $ cBancoBoletoHSBC + "," + cBancoBoletoSafra + "," + cBancoBoletoCitibank+  "," + cBancoBoletoSICOOB, cNossoNroFormatado := Left(cNossoNro,Len(cNossoNro)-1) + IIF(AllTrim(cCarteira) <> "CNR", "-", "") + Right(cNossoNro,1),"")
+Iif(cBancoTitulo $ cBancoBoletoBicBanco + "," + cBancoBoletoRural + "," + cBancoBoletoSafra, cNossoNroFormatado := cNossoNro,"")
+Iif( cBancoBoleto $ cBancosContaConvenio, cNossoNroFormatado := cConvenio, "")
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[341-BANCO_ITAU]
+cCarteira 			:= oClass7VBoletoBancario:getValueBol("IDCARTEIRA")
+cNossoNro 			:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNossoNroFormatado	:= Left(cCarteira,3) + "/" + Left(cNossoNro,Len(cNossoNro)-1) + "-" + Right(cNossoNro,1)
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[399-BANCO_HSBC]
+cBancoBoletoBradesco	:= "237"
+cBancoBoletoABC			:= "246"
+cBancoBoletoBicBanco	:= "320"
+cBancoBoletoHSBC		:= "399"
+cBancoBoletoSafra		:= "422"
+cBancoBoletoRural		:= "453"
+cBancoBoletoCitibank	:= "745"
+cBancoBoletoSICOOB		:= "756"
+cBancoBoleto 			:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo			:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cCarteira 				:= oClass7VBoletoBancario:getValueBol("IDCARTEIRA")
+cNossoNro 				:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNossoNroFormatado		:= cNossoNro
+Iif(cBancoTitulo $ cBancoBoletoBradesco + "," + cBancoBoletoABC, cNossoNroFormatado := cCarteira + "/" + Left(cNossoNro,Len(cNossoNro)-1) + "-" + Right(cNossoNro,1) ,"")
+Iif(cBancoTitulo $ cBancoBoletoHSBC + "," + cBancoBoletoSafra + "," + cBancoBoletoCitibank+ "," + cBancoBoletoSICOOB, cNossoNroFormatado:= Left(cNossoNro,Len(cNossoNro)-1) + IIF(AllTrim(cCarteira) <> "CNR", "-", "") + Right(cNossoNro,1),"")
+Iif(cBancoTitulo $ cBancoBoletoBicBanco + "," + cBancoBoletoRural + "," + cBancoBoletoSafra,cNossoNroFormatado := cNossoNro,"")
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[422-BANCO_SAFRA]
+cBancoBoletoBradesco	:= "237"
+cBancoBoletoABC			:= "246"
+cBancoBoletoBicBanco	:= "320"
+cBancoBoletoHSBC		:= "399"
+cBancoBoletoSafra		:= "422"
+cBancoBoletoRural		:= "453"
+cBancoBoletoCitibank	:= "745"
+cBancoBoletoSICOOB		:= "756"
+cBancoBoleto 			:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo			:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cCarteira 				:= oClass7VBoletoBancario:getValueBol("IDCARTEIRA")
+cNossoNro 				:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNossoNroFormatado		:= cNossoNro
+Iif(cBancoTitulo $ cBancoBoletoBradesco + "," + cBancoBoletoABC, cNossoNroFormatado := cCarteira + "/" + Left(cNossoNro,Len(cNossoNro)-1) + "-" + Right(cNossoNro,1) ,"")
+Iif(cBancoTitulo $ cBancoBoletoHSBC + "," + cBancoBoletoSafra + "," + cBancoBoletoCitibank+ "," + cBancoBoletoSICOOB, cNossoNroFormatado:= Left(cNossoNro,Len(cNossoNro)-1) + IIF(AllTrim(cCarteira) <> "CNR", "-", "") + Right(cNossoNro,1),"")
+Iif(cBancoTitulo $ cBancoBoletoBicBanco + "," + cBancoBoletoRural + "," + cBancoBoletoSafra,cNossoNroFormatado := cNossoNro,"")
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[745-BANCO_CITIBANK]
+cBancoBoletoBradesco	:= "237"
+cBancoBoletoABC			:= "246"
+cBancoBoletoBicBanco	:= "320"
+cBancoBoletoHSBC		:= "399"
+cBancoBoletoSafra		:= "422"
+cBancoBoletoRural		:= "453"
+cBancoBoletoCitibank	:= "745"
+cBancoBoletoSICOOB		:= "756"
+cBancoBoleto 			:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo			:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cCarteira 				:= oClass7VBoletoBancario:getValueBol("IDCARTEIRA")
+cNossoNro 				:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNossoNroFormatado		:= cNossoNro
+Iif(cBancoTitulo $ cBancoBoletoBradesco + "," + cBancoBoletoABC, cNossoNroFormatado := cCarteira + "/" + Left(cNossoNro,Len(cNossoNro)-1) + "-" + Right(cNossoNro,1) ,"")
+Iif(cBancoTitulo $ cBancoBoletoHSBC + "," + cBancoBoletoSafra + "," + cBancoBoletoCitibank + "," + cBancoBoletoSICOOB, cNossoNroFormatado := Left(cNossoNro,Len(cNossoNro)-1) + IIF(AllTrim(cCarteira) <> "CNR", "-", "") + Right(cNossoNro,1),"")
+Iif(cBancoTitulo $ cBancoBoletoBicBanco + "," + cBancoBoletoRural + "," + cBancoBoletoSafra, cNossoNroFormatado := cNossoNro,"")
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[755-BANCO_BANK_OF_AMERICA]
+cCarteira 				:= oClass7VBoletoBancario:getValueBol("IDCARTEIRA")
+cConvenio 				:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+cNossoNro 				:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cBancosContaConvenio	:= AllTrim(GetNewPar("7V_BCOCONV","246,755"))
+cNossoNroFormatado		:= SubStr(cNossoNro,2,10) + " " + Left(cCarteira,02) + "4"
+Iif( cBancoBoleto $ cBancosContaConvenio, cNossoNroFormatado := cConvenio, "")
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)
+
+[756-BANCO_BANCOOB_SICOOB]
+cBancoBoletoBradesco	:= "237"
+cBancoBoletoABC			:= "246"
+cBancoBoletoBicBanco	:= "320"
+cBancoBoletoHSBC		:= "399"
+cBancoBoletoSafra		:= "422"
+cBancoBoletoRural		:= "453"
+cBancoBoletoCitibank	:= "745"
+cBancoBoletoSICOOB		:= "756"
+cBancoBoleto 			:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo			:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cCarteira 				:= oClass7VBoletoBancario:getValueBol("IDCARTEIRA")
+cNossoNro 				:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNossoNroFormatado		:= cNossoNro
+Iif(cBancoTitulo $ cBancoBoletoBradesco + "," + cBancoBoletoABC, cNossoNroFormatado := cCarteira + "/" + Left(cNossoNro,Len(cNossoNro)-1) + "-" + Right(cNossoNro,1) ,"")
+Iif(cBancoTitulo $ cBancoBoletoHSBC + "," + cBancoBoletoSafra + "," + cBancoBoletoCitibank + "," + cBancoBoletoSICOOB, cNossoNroFormatado := Left(cNossoNro,Len(cNossoNro)-1) + IIF(AllTrim(cCarteira) <> "CNR", "-", "") + Right(cNossoNro,1),"")
+Iif(cBancoTitulo $ cBancoBoletoBicBanco + "," + cBancoBoletoRural + "," + cBancoBoletoSafra, cNossoNroFormatado := cNossoNro,"")
+oClass7VBoletoBancario:setValueBol("NOSSONRO_FORMATADO",cNossoNroFormatado)

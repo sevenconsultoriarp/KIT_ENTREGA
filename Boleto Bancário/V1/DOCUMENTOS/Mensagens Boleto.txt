@@ -1,0 +1,156 @@
+############################################################
+MENSAGENS PADRÕES PARA BOLETO
+############################################################
+001
+Mensagem de Pagamento em Qualquer Banco
+Até o vencimento pagável em qualquer banco.
+
+002
+Instrução 1 após Vencimento
+Não receber após 20 dias do vencimento.
+
+003	
+Instrução 2 após Vencimento
+Protestar após 5 dias de vencimento.
+
+004	
+Mensagem de % de Juros
+#( nValorTit 	:= oClass7VBoletoBancario:getValueBol("VALOR_BOLETO") , "")#
+#( nPorcJuros	:= SE1->E1_PORCJUR , "")#
+#( cPorcJuros	:= AllTrim(Transform((nValorTit * nPorcJuros / 100),"@E 99,999.99")) + " ( " + cValToChar(nPorcJuros) + "% )" , "")#
+#( Iif( nPorcJuros > 0 , "% Juros: " + cPorcJuros,"") ,"")#
+
+005	
+Mensagem de Valor de Juros
+#( nValorJuros	:= SE1->E1_VALJUR , "")#
+#( cValJuros	:= AllTrim(Transform(nValorJuros,"@E 99,999.99")) , "")#
+#( Iif( nValorJuros > 0 , "Valor de Juros: R$ " + cPorcJuros,"") ,"")# 
+
+006	
+Mensagem de Desconto Financeiro
+#( nDescFin	:= SE1->E1_VALJUR , "")#
+#( cDescFin	:= AllTrim(Transform(nDescFin,"@E 99,999.99")) , "")#
+#( Iif( nDescFin > 0 , "Valor de Desconto Financeiro: R$ " + cDescFin,"") ,"")# 
+
+007
+Mensagem com Data de Vencimento Original do Título
+#( cVencto := AllTrim(Transform(SE1->E1_VENCTO,"@R 99/99/9999")) , "")#
+Vencimento Original do Título: #cVencto#
+
+008	
+Mensagem com Data de Vencimento Real do Título
+#( cVencto := AllTrim(Transform(SE1->E1_VENCREA,"@R 99/99/9999")) , "")#
+Vencimento do Título: #cVencto#
+
+009
+Mensagem com Dias de Multa
+#( cDiasMulta 	:= StrZero(GetNewPar("7V_DMULTA",3),01), "")#
+Aplica multa após #cDiasMulta# Dias
+
+010	
+Mensagem com Valor de Mora BB
+#( nValorMora	:= SE1->E1_PORCJUR , "")#
+#( cValorMora	:= AllTrim(Transform((nValorTit * nPorcJuros / 100),"@E 99,999.99")), "")#
+#( IIF( nValorMora > 0,"Encargos Atraso/Inadimplência de R$ " + cValorMora + " por dia","") , "")#
+Banco: 001
+
+011
+Mensagem de Encargos incluídos BB
+(ENCARGOS:JR. REMUNERATORIOS; JRS MORA; AT.MONETARIA)	
+Banco: 001
+
+012	
+Mensagem com Valor de Mora BicBanco
+#( nValorMora	:= SE1->E1_PORCJUR , "")#
+#( cValorMora	:= AllTrim(Transform((nValorTit * nPorcJuros / 100),"@E 99,999.99")), "")#
+#( IIF( nValorMora > 0,"Valor Mora Juros Dia de Atraso R$ " + cValorMora,"") , "")#
+Banco: 320
+
+013	
+Mensagem de Cessão de Título BicBanco
+TIT.CEDIDO FIDUCIARIAMENTE, NAO PAGAR DIRET.A #NOMEEMP#	
+Banco: 320
+
+014	
+Mensagem de Cessão de Título BicBanco
+#( cNomeEmpresa := oClass7VBoletoBancario:getValueBol("M0_NOMECOM",1,3), "")#
+#( cCNPJEmpresa := AllTrim(Transform(oClass7VBoletoBancario:getValueBol("M0_CGC",1,3),"@R 99.999.999/9999-99")) , "")#
+#cNomeEmpresa# - CNPJ: #cCNPJEmpresa#
+Banco: 320
+
+015
+Mensagem de Cessão de Título BicBanco
+#( cEndCobEmpresa := oClass7VBoletoBancario:getValueBol("M0_ENDCOB",1,3), "")#
+END.: #cEndCobEmpresa#
+Banco: 320
+
+016
+Mensagem com Valor de Mora Banco Rural
+#( nValorMora	:= SE1->E1_PORCJUR , "")#
+#( cValorMora	:= AllTrim(Transform((nValorTit * nPorcJuros / 100),"@E 99,999.99")), "")#
+#( IIF( nValorMora > 0,"Encargos Atraso/Inadimplência de R$ " + cValorMora + " por Dia","") , "")#
+Banco: 453
+
+017
+Mensagem de Encargos incluídos Banco Rural
+(ENCARGOS:JR. REMUNERATORIOS; JRS MORA; AT.MONETARIA)
+Banco: 453
+
+018
+Mensagem com Data para Desconto
+#( cDataDesc := Transform(SE1->E1_VENCREA + SE1->E1_DIADESC ,"@R 99/99/9999") , "")#
+Data Limite para Desconto: #cDataDesc#
+
+019
+Mensagem com Data para Multa
+#( nDiasMulta 	:= GetNewPar("7V_DMULTA",3), "")#
+#( nValorMulta 	:= GetNewPar("7V_VMULTA",50), "")#
+#( cDataMulta 	:= AllTrim(DtoC(SE1->E1_VENCTO + nDiasMulta)) )#
+#( IIF( nValorMulta > 0,"Data para aplicação da Multa: " + cDataMulta,""), "")#
+
+020
+Mensagem de Valor de Desconto
+#( nValDesc := SE1->E1_DESCONT , "")#
+#( cValDesc := AllTrim(Transform(nValDesc,"@E 999,999,999.99")) , "")#
+#( IIF( nValDesc > 0,"Valor de Desconto: R$ " + cValDesc,""), "")#
+
+021
+Mensagem de Valor de Acréscimo
+#( nValAcresc := SE1->E1_ACRESC , "")#
+#( cValAcresc := AllTrim(Transform(nValAcresc,"@E 999,999,999.99")) , "")#
+#( IIF( nValAcresc > 0,"Valor de Acréscimo: R$ " + cValAcresc,""), "")#
+
+022
+Mensagem de Valor de Saldo de Acréscimo
+#( nValSldAcresc := SE1->E1_SDACRES , "")#
+#( cValSldAcresc := AllTrim(Transform(nValSldAcresc,"@E 999,999,999.99")) , "")#
+#( IIF( nValSldAcresc > 0,"Valor de Saldo de Acrésc.: R$ " + cValSldAcresc,""), "")#
+
+023
+Mensagem de Valor de Decréscimo
+#( nValDecresc := SE1->E1_DECRESC , "")#
+#( cValDecresc := AllTrim(Transform(nValDecresc,"@E 999,999,999.99")) , "")#
+#( IIF( nValDecresc > 0,"Valor de Decréscimo: R$ " + cValDecresc,""), "")#
+
+024
+Mensagem de Valor de Saldo de Decréscimo
+#( nValSldDecresc := SE1->E1_SDDECRE , "")#
+#( cValSldDecresc := AllTrim(Transform(nValSldDecresc,"@E 999,999,999.99")) , "")#
+#( IIF( nValSldDecresc > 0,"Valor de Saldo de Descréscimo: R$ " + cValSldDecresc,""), "")#
+
+025
+Multa Percentual por Vencimento do Boleto
+#( nPorcMulta 	:= GetNewPar("7V_PMULTA",0.5), "")#
+#( nValorTit 	:= oClass7VBoletoBancario:getValueBol("VALOR_BOLETO") , "")#
+#( nValorMulta 	:= nValorTit * nPorcMulta / 100, "")#
+#( cValorMulta 	:= AllTrim(Transform(nValorMulta,"@E 999,999,999.99")), "")#
+#( cPorcMulta 	:= AllTrim(Transform(nPorcMulta,"@E 999.99")) + "%", "")#
+#( cDiasMulta 	:= StrZero(GetNewPar("7V_DMULTA",3),01), "")#
+Após #cDiasMulta# dias do vencimento aplicar multa de R$ #cValorMulta + "(" + cPorcMulta + ")"#.
+
+026
+Multa em Valor por Vencimento do Boleto
+#( cDiasMulta 	:= StrZero(GetNewPar("7V_DMULTA",3),01), "")#
+#( nValorMulta 	:= GetNewPar("7V_VMULTA",50), "")#
+#( cValorMulta 	:= AllTrim(Transform(nValorMulta,"@E 999,999,999.99")), "")#
+Após #cDiasMulta# dias do vencimento aplicar multa de R$ #cValorMulta#.

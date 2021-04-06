@@ -1,0 +1,400 @@
+/*
+############################################################################################################
+Código Query	: 001
+Descrição		: Boleto Bancário SEVEN - Seleção de Dados dos Títulos e Configurações do Boleto
+Banco de Dados	: SQL SERVER/ORACLE (Parser Automático)
+Nota			: Associado a Classe do Boleto Bancário SEVEN - Class7VBoletoBancario
+Processo		: 1 - Selecionar Títulos com a opção Gerar (Sem Nosso Número Gerado)
+				: 2 - Grava Cód. do Boleto Parametrizado (Grupo de parâmetros) ou Agendado (Se ativado o agendamento) no título com o nosso número
+				: 3 - Selecionar Títulos com a opção Imprimir (Com Nosso Número Gerado) - Utiliza dados gravados
+				: 4 - Selecionar Títulos com a opção Regerar (Com Nosso Número Gerado) - Permite mudar o Cód. do Boleto (Grupo de Parâmetros ou Agendado)
+				: 5 - ReGrava Cód. do Boleto Parametrizado (Grupo de parâmetros) ou Agendado (Se ativado o agendamento) no título com o nosso número
+				: 6 - Selecionar Títulos com a opção Recalcula DV (Com Nosso Número Gerado) - Permite recalcular o DV nosso Número com o Cód. do Boleto já associado
+				: 7 - ReGrava Cód. do Boleto Parametrizado (Grupo de parâmetros) ou Agendado (Se ativado o agendamento) no título com o nosso número
+
+Criado Por		: Carlos Eduardo Niemeyer Rodrigues
+Data Criação	: 17/03/2021
+
+Revisões		: -
+############################################################################################################
+*/
+#( IIF(oClass7VBoletoBancario:getTypeOfAction() == "1",cFiltroAcaoClass7VBoletoBancario := "AND SE1.E1_NUMBCO = ' '",""), "")# /*ACTION_GERAR_BOLETO - Nosso Número ainda não Gerado*/
+#( IIF(oClass7VBoletoBancario:getTypeOfAction() == "2",cFiltroAcaoClass7VBoletoBancario := "AND SE1.E1_NUMBCO <> ' '",""), "")# /*ACTION_REIMPRIMIR_BOLETO - Nosso Número já Gerado*/
+#( IIF(oClass7VBoletoBancario:getTypeOfAction() == "3",cFiltroAcaoClass7VBoletoBancario := "AND SE1.E1_NUMBCO <> ' ' AND SE1.E1_NUMBOR = ' ' ",""), "")# /*ACTION_REGERAR_BOLETO - Regerar Boletos (Considera que os Boletos já foram gerados) e recria os nossos números SEM borderô gerado*/
+#( IIF(oClass7VBoletoBancario:getTypeOfAction() == "4",cFiltroAcaoClass7VBoletoBancario := "AND SE1.E1_NUMBCO <> ' ' AND SE1.E1_NUMBOR = ' ' ",""), "")# /*ACTION_CALC_DV_NOSSO_NUMERO - Calcular DV Nosso Número (Considera que os Boletos já foram gerados) e recalcula apenas o DV do Nosso Número SEM borderô gerado*/
+#( IIF(oClass7VBoletoBancario:getTypeOfAction() == "5",cFiltroAcaoClass7VBoletoBancario := "", "")#  /*ACTION_GERAR_REIMPRIMIR_BOLETO - Gera Boletos não gerados ou reimprime se já gerado*/
+#( lAtivaAgendamento := GetNewPar("7V_BOLAGEN",.T.) ,"")#
+#( cTipoVencto 		:= oClass7VBoletoBancario:getTypeOfDue() ,"")#
+#( lFiltered 		:= oClass7VBoletoBancario:lFiltered ,"")#
+#( cFilter 			:= oClass7VBoletoBancario:cFilter ,"")#
+#( cCodBoleto 		:= IIF(!Empty(oClass7VBoletoBancario:getCodBoleto()),oClass7VBoletoBancario:getCodBoleto(),"001") ,"")#
+#( cOrder			:= oClass7VParamBoxLib:getValue("MV_PAR20"), "")#
+
+WITH DADOS_TITULOS AS (
+	SELECT 
+		SE1.E1_FILIAL, E1_FILORIG, E1_CLIENTE, E1_LOJA
+		,E1_PREFIXO, E1_NUM, E1_PARCELA, E1_TIPO
+		,E1_EMISSAO, E1_VENCTO, E1_VENCREA
+		,E1_PORTADO, E1_AGEDEP, E1_CONTA
+		,E1_NUMBOR, E1_MOEDA, E1_NATUREZ
+		,E1_PEDIDO, E1_SITUACA
+		,E1_VALOR, E1_SALDO, E1_PORCJUR, E1_VALJUR, E1_DESCFIN
+		,E1_DIADESC, E1_DESCONT, E1_ACRESC, E1_SDACRES, E1_DECRESC, E1_SDDECRE
+		,E1_NUMBCO
+		#IIf(SE1->(FieldPos("E1_7VNUMB2")) > 0,",E1_7VNUMB2","")# /*Nosso Número 2 para CNAB de Remessa - Alguns Bancos*/
+		,E1_CODDIG, E1_CODBAR
+		
+		/*CÓD. BOLETO JÁ COM NOSSO NÚMERO PORÉM SEM VÍNCULO COM O CÓDIGO DO BOLETO - ASSOCIA PELO BANCO+AGÊNCIA+CONTA*/
+		,(CASE WHEN E1_7VCDBOL = ' ' AND E1_NUMBCO <> ' ' THEN COALESCE(ZT2_CODIGO,' ') ELSE E1_7VCDBOL END) AS COD_BOLETO
+		,SE1.R_E_C_N_O_ AS RECNOSE1 
+		,SA1.A1_COD, SA1.A1_LOJA, SA1.A1_NOME, SA1.A1_CGC, SA1.A1_PESSOA
+		,SA1.A1_END, SA1.A1_BAIRRO, SA1.A1_MUN, SA1.A1_EST, SA1.A1_CEP 
+		,SA1.A1_ENDCOB, SA1.A1_BAIRROC, SA1.A1_MUNC, SA1.A1_ESTC, SA1.A1_CEPC 
+		,SA1.A1_EMAIL, SA1.A1_BLEMAIL
+		,(CASE 
+			WHEN E1_PORTADO <> ' ' AND E1_AGEDEP <> ' ' AND E1_CONTA <> ' ' AND E1_NUMBCO <> ' ' THEN
+				'SIM'
+			ELSE
+				'NÃO'
+		END) AS BOLETO_GERADO
+
+	 FROM 
+		--Títulos do Contas a Receber
+		#RetSqlTab("SE1")# WITH (NOLOCK)
+
+		--Cadastro de Clientes
+		INNER JOIN #RetSqlTab("SA1")# WITH (NOLOCK) 	ON 1 = 1
+														AND #RetSqlFil("SA1")#
+														AND SA1.A1_COD = SE1.E1_CLIENTE 
+														AND SA1.A1_LOJA = SE1.E1_LOJA 
+														AND #RetSqlDel("SA1")# 
+														#IIF(SA1->(FieldPos("A1_7VBOL"))>0,"AND A1_7VBOL = 'S'","")# /*Verifica se o cliente gera boleto*/
+
+		--Definições do Boleto /*Somente para os casos com nosso número gerado + portador definido sem código de boleto amarrado*/
+		LEFT JOIN #RetSqlTab("ZT2")# WITH (NOLOCK) 		ON 1 = 1
+														AND #RetSqlFil("ZT2")#
+														AND ZT2.ZT2_BANCO = SE1.E1_PORTADO
+														AND ZT2.ZT2_AGENCI = SE1.E1_AGEDEP
+														AND ZT2.ZT2_CONTA = SE1.E1_CONTA
+														AND ZT2.ZT2_MSBLQL <> '1'
+														AND #RetSqlDel("ZT2")# 
+														AND SE1.E1_7VCDBOL = ' '
+														AND SE1.E1_NUMBOR <> ' '
+
+	 WHERE 
+		1 = 1
+		AND #RetSqlFil("SE1")# 
+		#IIF(SE1->(FieldPos("E1_7VBOL"))>0,"AND E1_7VBOL = 'S'","")# /*Verifica se o título deve gerar boleto*/
+		AND SE1.E1_SALDO > 0 /*Somente Títulos em Aberto*/
+		AND UPPER(SE1.E1_PORTADO) = LOWER(SE1.E1_PORTADO) /*Ignora Bancos do Tipo Caixinha CX1, CX2, etc.*/
+		#IIF(!lFiltered,"AND SE1.E1_PREFIXO BETWEEN '" + oClass7VParamBoxLib:getValue("MV_PAR03") + "' AND '" + oClass7VParamBoxLib:getValue("MV_PAR04") + "'","")#
+		#IIF(!lFiltered,"AND SE1.E1_NUM 	BETWEEN '" + oClass7VParamBoxLib:getValue("MV_PAR05") + "' AND '" + oClass7VParamBoxLib:getValue("MV_PAR06") + "'","")#
+		#IIF(!lFiltered,"AND SE1.E1_PARCELA BETWEEN '" + oClass7VParamBoxLib:getValue("MV_PAR07") + "' AND '" + oClass7VParamBoxLib:getValue("MV_PAR08") + "'","")#
+		#IIF(!lFiltered,"AND SE1.E1_CLIENTE BETWEEN '" + oClass7VParamBoxLib:getValue("MV_PAR09") + "' AND '" + oClass7VParamBoxLib:getValue("MV_PAR11") + "'","")#
+		#IIF(!lFiltered,"AND SE1.E1_LOJA 	BETWEEN '" + oClass7VParamBoxLib:getValue("MV_PAR10") + "' AND '" + oClass7VParamBoxLib:getValue("MV_PAR12") + "'","")#
+		#IIF(!lFiltered,"AND SE1.E1_EMISSAO	BETWEEN '" + DTOS(oClass7VParamBoxLib:getValue("MV_PAR13")) + "' AND '" + DTOS(oClass7VParamBoxLib:getValue("MV_PAR14")) + "'","")#
+		#IIF(!lFiltered,"AND SE1.E1_VENCREA	BETWEEN '" + DTOS(oClass7VParamBoxLib:getValue("MV_PAR15")) + "' AND '" + DTOS(oClass7VParamBoxLib:getValue("MV_PAR16")) + "'","")#
+		#IIF(!lFiltered,"AND SE1.E1_NUMBOR	BETWEEN '" + oClass7VParamBoxLib:getValue("MV_PAR17") + "' AND '" + oClass7VParamBoxLib:getValue("MV_PAR18") + "'","")#
+		#IIF(!lFiltered .And. !Empty(oClass7VParamBoxLib:getValue("MV_PAR19")),"AND SE1.E1_TIPO = '" + oClass7VParamBoxLib:getValue("MV_PAR19") + "'","")#
+		#IIF(!Empty(cFiltroAcaoClass7VBoletoBancario),cFiltroAcaoClass7VBoletoBancario,"")#
+		#IIF(lFiltered .And. !Empty(cFilter),cFilter,"")#
+		AND #RetSqlDel("SE1")#
+)
+,DEFINICOES_BOLETO AS (
+	SELECT
+		ZT2_CODIGO
+		,ZT2_DESC
+		,ZT2_BITMAP
+		,ZT2_BANCO
+		/*CONTA VINCULADA A SA6/SEE - LEGADO*/
+		,ZT2_AGENCI
+		,ZT2_CONTA
+		,ZT2_SUBCTA
+		/*CONTA PARA GERAÇÃO DO BOLETO*/
+		,(CASE WHEN ZT2_BOLAGE <> ' ' THEN ZT2_BOLAGE ELSE ZT2_AGENCI END) AS ZT2_BOLAGE
+		,ZT2_DVAGEN
+		,(CASE WHEN ZT2_BOLCTA <> ' ' THEN ZT2_BOLCTA ELSE ZT2_CONTA END) AS ZT2_BOLCTA
+		,ZT2_DVCTA
+		,ZT2_CODREG
+		,ZT2_CARTCP
+		,ZT2_CONTRA
+		,ZT2_CIP
+		,ZT2_USOBCO
+		,ZT2_LOCPAG
+		,ZT2_CRBCO
+		,ZT2_CRAGEN
+		,ZT2_CRDVAG
+		,ZT2_CRCTA
+		,ZT2_CRDVCT
+		,(CASE WHEN ZT2_DIGCAR > 0 THEN ZT2_DIGCAR ELSE ZT3_DIGCAR END) AS ZT2_DIGCAR
+		,(CASE WHEN ZT2_DIGSEQ > 0 THEN ZT2_DIGSEQ ELSE ZT3_DIGSEQ END) AS ZT2_DIGSEQ
+		,(CASE WHEN ZT2_DIGCON > 0 THEN ZT2_DIGCON ELSE ZT3_DIGCON END) AS ZT2_DIGCON
+		,ZT2_CTAFOR
+		,ZT2_TIPPAG
+		,ZT3_DESC
+		,ZT3_DTBASE
+		,ZT3_MOEDA
+		,ZT3_NOSNUM
+		,ZT3_REMNUM
+		,ZT3_FORNUM
+		,ZT3_CPOLIV
+		,ZT3_DIGAGE
+		,ZT3_DIGCTA
+		,SA6.R_E_C_N_O_ AS RECNOSA6
+		,A6_COD, A6_AGENCIA, A6_DVCTA, A6_NUMCON, A6_DVAGE, A6_NOME, A6_CGC 
+		,EE_CODIGO, EE_AGENCIA, EE_CONTA, EE_SUBCTA, EE_NRBYTES, EE_CODEMP
+		,EE_CODCART, EE_TPCOBRA
+		,SEE.R_E_C_N_O_ AS RECNOSEE		
+		
+	FROM
+		--Cadastro de Definições do Boleto (Definido pela Empresa)
+		#RetSqlTab("ZT2")# WITH (NOLOCK)
+		
+		--Cadastro de Regras do Boleto (Nativo Boleto)
+		INNER JOIN #RetSqlTab("ZT3")# WITH (NOLOCK) 	ON 1 = 1
+														AND #RetSqlFil("ZT3")#
+														AND ZT3.ZT3_CODREG = ZT2.ZT2_CODREG
+														AND ZT3.ZT3_BANCO = ZT2.ZT2_BANCO
+														AND ZT3.ZT3_MSBLQL <> '1' /*Somente não Bloqueados*/
+														AND #RetSqlDel("ZT3")#
+
+		--Cadastro de Bancos (Definido pela Empresa)
+		INNER JOIN #RetSqlTab("SA6")# WITH (NOLOCK) 	ON 1 = 1
+														AND #RetSqlFil("SA6")#
+														AND SA6.A6_COD = ZT2.ZT2_BANCO
+														AND SA6.A6_AGENCIA = ZT2.ZT2_AGENCI 
+														AND SA6.A6_NUMCON = ZT2.ZT2_CONTA
+														AND #RetSqlDel("SA6")#
+
+		--Parâmetros de Bancos (Definido pela Empresa)
+		INNER JOIN #RetSqlTab("SEE")# WITH (NOLOCK) 	ON 1 = 1
+														AND #RetSqlFil("SEE")#
+														AND SEE.EE_CODIGO = ZT2.ZT2_BANCO
+														AND SEE.EE_AGENCIA = ZT2.ZT2_AGENCI
+														AND SEE.EE_CONTA = ZT2.ZT2_CONTA
+														AND SEE.EE_SUBCTA = ZT2.ZT2_SUBCTA
+														AND #RetSqlDel("SEE")#
+	WHERE
+		1 = 1
+		AND #RetSqlFil("ZT2")#
+		AND ZT2.ZT2_MSBLQL <> '1' /*Somente não Bloqueados*/
+		AND #RetSqlDel("ZT2")#
+	
+)
+--Avalia Def. Boleto Agendado e/ou Def. Boleto Parametrizado
+,AGENDAMENTO_BOLETO AS (
+	SELECT
+		*
+	FROM(
+		SELECT 
+			DADOS_UNIFICADOS.ZT6_CODBOL AS COD_BOLETO
+			,ROW_NUMBER() OVER (ORDER BY ZT6_CODBOL) AS CONTAGEM
+		FROM(
+			SELECT
+				ZT6_CODBOL
+			FROM(
+				SELECT #IIF("SQL" $ AllTrim(Upper(TCGetDB())),"TOP 100 PERCENT","")#
+					ZT6_FILIAL, ZT6_CODBOL, ZT6_DATINI, ZT6_DATFIM
+					,ROW_NUMBER() OVER (ORDER BY ZT6_DATINI DESC, ZT6_CODBOL) AS CONTAGEM
+				FROM
+					#RetSqlTab("ZT6")# WITH (NOLOCK)
+				WHERE
+					1 = 1
+					AND #RetSqlFil("ZT6")#
+					AND '#DtoS(Date())#' BETWEEN ZT6_DATINI AND ZT6_DATFIM /*FILTRO DO PERÍODO*/
+					AND ZT6.ZT6_MSBLQL <> '1' /*Somente não Bloqueados*/
+					AND #RetSqlDel("ZT6")#
+				ORDER BY
+					ZT6_DATFIM DESC, ZT6_DATINI DESC, ZT6_CODBOL /*ORDEM OBRIGATÓRIA*/
+				) AGENDAMENTO
+			WHERE
+				#IIF(lAtivaAgendamento,"1 = 1","1 = 0")#
+				AND AGENDAMENTO.CONTAGEM = 1 /*SOMENTE 1 LINHA*/
+				
+			--TODO: Se vazio a consulta acima, deve buscar o último registro do agendamento definido se ativado o agendamento
+
+			#IIF(!Empty(cCodBoleto),"UNION ALL SELECT '" + cCodBoleto + "' AS ZT6_CODBOL FROM DUAL","")# /*Boleto Parametrizado Grupo de Parâmetros*/
+
+		) DADOS_UNIFICADOS
+	) BOLETO_PARAMETRIZADO
+	WHERE
+		1 = 1
+		AND BOLETO_PARAMETRIZADO.CONTAGEM = 1 /*SOMENTE 1 LINHA*/
+)
+
+SELECT
+	(CASE 
+		WHEN BOLETO_GERADO = 'SIM' THEN
+			'BR_VERDE'
+		ELSE
+			'BR_VERMELHO'
+	END) AS LEGENDA_BOLETO
+	,BOLETO_GERADO
+	,TIT.E1_FILIAL AS FILIAL
+	,TIT.E1_FILORIG AS FILIAL_ORIG
+	,TIT.E1_CLIENTE AS COD_CLIENTE
+	,TIT.E1_LOJA AS LOJA
+	,TIT.E1_PREFIXO AS PREFIXO_TITULO
+	,TIT.E1_NUM AS NUM_TITULO
+	,TIT.E1_PARCELA AS PARCELA_TITULO
+	,TIT.E1_TIPO AS TIPO_TITULO
+	,TIT.E1_EMISSAO AS EMISSAO_TITULO
+	,TIT.E1_VENCTO AS VENCTO_ORIG
+	,TIT.E1_VENCREA AS VENCTO_REAL
+	,(CASE WHEN '#cTipoVencto#' = 'R' THEN E1_VENCREA ELSE E1_VENCTO END) AS VENCTO_BOLETO
+	--,COALESCE(BOL.ZT5_DTBOL,'#DtoS(DDATABASE)#') EMISSAO_BOLETO
+	,'#DtoS(DDATABASE)#' AS EMISSAO_BOLETO
+	
+	/*PARA USO NAS REGRAS DOS BOLETOS - PARA GRAVAÇÃO NOS TÍTULOS - CONTA VINCULADA A SA6/SEE - LEGADO*/
+	,(CASE WHEN TIT.E1_PORTADO <> ' ' THEN TIT.E1_PORTADO ELSE DEF.ZT2_BANCO END) AS BANCO_TITULO
+	,(CASE WHEN TIT.E1_PORTADO <> ' ' THEN TIT.E1_PORTADO ELSE DEF.ZT2_BANCO END) AS BANCO_DV_TITULO /*INCREMENTADO COM O DV POR MÓDULO11 POSTERIORMENTE*/
+	,(CASE WHEN TIT.E1_AGEDEP <> ' ' THEN TIT.E1_AGEDEP ELSE DEF.ZT2_AGENCI END) AS AGENCIA_TITULO
+	,ZT2_SUBCTA AS SUB_CONTA_TITULO
+	,DEF.ZT2_DVAGEN AS DV_AGENCIA_TITULO
+	,(CASE WHEN TIT.E1_CONTA <> ' ' THEN TIT.E1_CONTA ELSE DEF.ZT2_CONTA END) AS CONTA_TITULO
+	,DEF.ZT2_DVCTA AS DV_CONTA_TITULO
+	
+	/*PARA USO NAS REGRAS DOS BOLETOS - PARA GERAÇÃO E IMPRESSÃO DO BOLETO*/
+	,(CASE WHEN DEF.ZT2_CRBCO <> ' ' THEN DEF.ZT2_CRBCO ELSE DEF.ZT2_BANCO END) AS BANCO_BOLETO /*BANCO DE ORIGEM OU CORRESPONDENTE SE HOUVER*/
+	,(CASE WHEN DEF.ZT2_CRBCO <> ' ' THEN DEF.ZT2_CRBCO ELSE DEF.ZT2_BANCO END) AS BANCO_DV_BOLETO /*INCREMENTADO COM O DV POR MÓDULO11 POSTERIORMENTE*/
+	,(CASE WHEN DEF.ZT2_CRAGEN <> ' ' THEN TRIM(DEF.ZT2_CRAGEN) || TRIM(DEF.ZT2_CRDVAG) ELSE TRIM(DEF.ZT2_BOLAGE) || TRIM(DEF.ZT2_DVAGEN) END) AS AGENCIA_BOLETO /*BANCO DE ORIGEM COM DV OU CORRESPONDENTE SE HOUVER*/
+	,(CASE WHEN DEF.ZT2_CRDVAG <> ' ' THEN DEF.ZT2_CRDVAG ELSE DEF.ZT2_DVAGEN END) AS DV_AGENCIA_BOLETO /*BANCO DE ORIGEM OU CORRESPONDENTE SE HOUVER*/
+	,(CASE WHEN DEF.ZT2_CRCTA <> ' ' THEN TRIM(DEF.ZT2_CRCTA) || TRIM(DEF.ZT2_CRDVCT) ELSE TRIM(DEF.ZT2_BOLCTA) || TRIM(DEF.ZT2_DVCTA) END) AS CONTA_BOLETO /*BANCO DE ORIGEM COM DV OU CORRESPONDENTE SE HOUVER*/
+	,(CASE WHEN DEF.ZT2_CRDVCT <> ' ' THEN DEF.ZT2_CRDVCT ELSE DEF.ZT2_DVCTA END) AS DV_CONTA_BOLETO /*BANCO DE ORIGEM OU CORRESPONDENTE SE HOUVER*/	
+	,(CASE WHEN DEF.ZT2_CRAGEN <> ' ' THEN DEF.ZT2_CRAGEN ELSE DEF.ZT2_BOLAGE END) AS AGENCIA_SDV_BOLETO /*BANCO DE ORIGEM SEM DV OU CORRESPONDENTE SE HOUVER*/
+	,(CASE WHEN DEF.ZT2_CRCTA <> ' ' THEN DEF.ZT2_CRCTA ELSE DEF.ZT2_BOLCTA END) AS CONTA_SDV_BOLETO /*BANCO DE ORIGEM SEM DV OU CORRESPONDENTE SE HOUVER*/
+	,(CASE WHEN DEF.ZT2_CTAFOR <> 'S' THEN 'N' ELSE 'S' END) AS IMPRIMEAGENCIACONTAFORMATADA
+	,(CASE WHEN DEF.ZT2_TIPPAG = ' ' THEN '3' ELSE DEF.ZT2_TIPPAG END) AS TIPO_CODIGO_PAGADOR /*NOME+CÓDIGO+LOJA DO CLIENTE*/
+	
+	/*DADOS DA CONTA DO BANCO CORRESPONDENTE - PARA GRAVAR NO BOLETO*/
+	,DEF.ZT2_CRBCO AS BANCO_CORRESPONDENTE
+	,DEF.ZT2_CRAGEN AS AGENCIA_CORRESPONDENTE
+	,DEF.ZT2_CRDVAG AS DV_AGENCIA_CORRESPONDENTE
+	,DEF.ZT2_CRCTA AS CONTA_CORRESPONDENTE
+	,DEF.ZT2_CRDVCT AS DV_CONTA_CORRESPONDENTE
+	
+	,(CASE 
+		WHEN DEF.ZT2_CRAGEN <> ' ' THEN 
+			(CASE WHEN DEF.ZT2_CRDVAG <> ' ' THEN 
+				TRIM(DEF.ZT2_CRAGEN) || '-' || TRIM(DEF.ZT2_CRDVAG)
+			ELSE
+				TRIM(DEF.ZT2_CRAGEN)
+			END)
+		ELSE 
+			(CASE WHEN DEF.ZT2_DVAGEN <> ' ' THEN 
+				TRIM(DEF.ZT2_BOLAGE) || '-' || TRIM(DEF.ZT2_DVAGEN)
+			ELSE
+				TRIM(DEF.ZT2_BOLAGE)
+			END)
+	END) AS AGENCIA_BOLETO_FORMATADA /*BANCO DE ORIGEM OU CORRESPONDENTE SE HOUVER*/
+	,(CASE WHEN DEF.ZT2_CRCTA <> ' ' THEN 
+		(CASE WHEN ZT2_CRDVCT <> ' ' THEN
+			TRIM(DEF.ZT2_CRCTA) || '-' || TRIM(DEF.ZT2_CRDVCT)
+		ELSE
+			TRIM(DEF.ZT2_CRDVCT)
+		END)
+	ELSE
+		(CASE WHEN DEF.ZT2_DVCTA <> ' ' THEN
+			TRIM(DEF.ZT2_BOLCTA) || '-' || TRIM(DEF.ZT2_DVCTA)
+		ELSE
+			TRIM(DEF.ZT2_BOLCTA)
+		END)
+	END) AS CONTA_BOLETO_FORMATADA /*BANCO DE ORIGEM OU CORRESPONDENTE SE HOUVER*/	
+	,DEF.A6_NOME AS NOME_BANCO
+	,DEF.A6_CGC AS CNPJ_BANCO
+	,TIT.E1_NUMBOR AS NUM_BORDERO
+	,(CASE WHEN TIT.E1_MOEDA = 1 THEN '#GetNewPar("MV_SIMB1","R$")#' ELSE ' ' END) AS MOEDA_TITULO
+	,TIT.E1_NATUREZ AS NATUREZA_TITULO
+	,TIT.E1_PEDIDO AS PEDIDO_TITULO
+	,TIT.E1_SITUACA AS SITUACAO_TITULO
+	,TIT.E1_VALOR AS VALOR_TITULO
+	,TIT.E1_SALDO AS SALDO_TITULO
+	,TIT.E1_PORCJUR AS PORC_JUR_TITULO
+	,TIT.E1_VALJUR AS VAL_JUR_TITULO
+	,TIT.E1_DESCFIN AS DESC_FIN_TITULO
+	,TIT.E1_SALDO AS VALOR_BOLETO
+	,TIT.E1_DIADESC AS DIAS_DESCONTO
+	,TIT.E1_DESCONT AS VALOR_DESCONTO
+	,TIT.E1_ACRESC AS ACRESCIMO
+	,TIT.E1_SDACRES AS SALDO_ACRESCIMO
+	,TIT.E1_DECRESC AS DECRESCIMO
+	,TIT.E1_SDDECRE AS SALDO_DESCRECIMO
+	,TIT.E1_NUMBCO AS NOSSONRO
+	,#IIf(SE1->(FieldPos("E1_7VNUMB2")) > 0,"TIT.E1_7VNUMB2","'" + Space(20) + "'")# AS NOSSONRO_REMESSA /*Nosso Número 2 para CNAB de Remessa - Alguns Bancos*/
+	,TIT.E1_CODDIG AS LINHA_DIGITAVEL
+	,TIT.E1_CODBAR AS COD_BARRAS
+	,DEF.ZT2_BITMAP AS LOGOBANCO
+	,DEF.ZT2_CIP AS CIP
+	,DEF.ZT2_USOBCO AS USOBANCO
+	,(CASE WHEN DEF.ZT2_LOCPAG = ' ' THEN 'Pagável em qualquer Banco até o Vencimento.' ELSE DEF.ZT2_LOCPAG END) AS LOCALPAGTO
+	,(CASE WHEN DEF.ZT2_BANCO = '745' THEN 'DMI' ELSE 'DM' END) AS ESPECIE /*(DM=DUPLICATA MERCANTIL, DS=DUPLICATA DE SERVIÇO, RC=RECIBO) - Tipo no Banco*/
+	,DEF.ZT3_DTBASE AS DATA_FATOR_BANCO
+	,DEF.ZT3_MOEDA AS COD_MOEDA
+	,' ' AS CAMPO_LIVRE /*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS COD_SEQUENCIA /*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS BASE_NOSSONRO /*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS DV_NOSSONRO	/*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS NOSSONRO /*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS DIG_NOSSONRO /*PARA COMPOSIÇÃO POSTERIOR*/
+	,'#Space(20)#' AS NOSSONRO_FORMATADO /*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS NOSSONRO_REMESSA /*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS DV_REMESSA /*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS DV_COD_BARRAS /*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS FATOR_COD_BARRAS /*PARA COMPOSIÇÃO POSTERIOR*/
+	,' ' AS MSG_BOLETO /*MENSAGEM DO BOLETO*/
+	,(CASE WHEN TIT.COD_BOLETO = ' ' THEN AGE.COD_BOLETO ELSE TIT.COD_BOLETO END) AS COD_BOLETO
+	,DEF.EE_CODEMP AS COD_CONVENIO
+	,DEF.ZT2_DIGCON AS DIG_CONVENIO
+	,DEF.ZT2_DIGSEQ AS DIG_SEQ
+	,DEF.ZT3_DIGAGE AS DIG_AGENCIA
+	,DEF.ZT3_DIGCTA	AS DIG_CONTA
+	,TRIM(DEF.EE_CODCART) || TRIM(DEF.ZT2_CARTCP) AS CARTEIRA
+	,SUBSTRING(TRIM(DEF.EE_CODCART) || TRIM(DEF.ZT2_CARTCP),1,CAST(CASE WHEN DEF.ZT2_DIGCAR = 0 THEN 2 ELSE DEF.ZT2_DIGCAR END AS INT)) AS IDCARTEIRA
+	,DEF.ZT2_CONTRA AS CONTRATO
+	,DEF.EE_NRBYTES AS BYTES_CNAB
+	,TIT.RECNOSE1
+	,DEF.RECNOSEE
+	,TIT.A1_NOME AS NOME_CLIENTE
+	,TIT.A1_CGC AS CNPJ_CLIENTE
+	,TIT.A1_PESSOA AS TIPO_PESSOA_CLIENTE
+	,(CASE WHEN TIT.A1_ENDCOB = ' ' THEN TIT.A1_END ELSE TIT.A1_ENDCOB END) AS ENDERECO_CLIENTE
+	,(CASE WHEN TIT.A1_ENDCOB = ' ' THEN TIT.A1_BAIRRO ELSE TIT.A1_BAIRROC END) AS BAIRRO_CLIENTE
+	,(CASE WHEN TIT.A1_ENDCOB = ' ' THEN TIT.A1_MUN ELSE TIT.A1_MUNC END) AS CIDADE_CLIENTE
+	,(CASE WHEN TIT.A1_ENDCOB = ' ' THEN TIT.A1_EST ELSE TIT.A1_ESTC END) AS ESTADO_CLIENTE
+	,(CASE WHEN TIT.A1_ENDCOB = ' ' THEN TIT.A1_CEP ELSE TIT.A1_CEPC END) AS CEP_CLIENTE
+	,TIT.A1_EMAIL AS EMAIL_CLIENTE
+	,(CASE WHEN TIT.A1_BLEMAIL = '1' THEN 'S' ELSE 'N' END) AS ENVIA_BOLETO_CLIENTE
+	,(CASE WHEN DEF.ZT2_CRBCO <> ' ' AND DEF.ZT2_CRBCO <> DEF.ZT2_BANCO THEN 'S' ELSE 'N' END) AS EMPRESA_AVALISTA --Se Houver Banco Correspondente e não for o mesmo banco
+	,' ' AS NOME_AVALISTA /*PARA POSTERIOR DEFINIÇÃO*/
+	,' ' AS ENDERECO_AVALISTA /*PARA POSTERIOR DEFINIÇÃO*/
+	,' ' AS MUNICIPIO_AVALISTA /*PARA POSTERIOR DEFINIÇÃO*/
+	,' ' AS ESTADO_AVALISTA /*PARA POSTERIOR DEFINIÇÃO*/
+	,' ' AS CEP_AVALISTA /*PARA POSTERIOR DEFINIÇÃO*/
+	,' ' AS CNPJ_AVALISTA /*PARA POSTERIOR DEFINIÇÃO*/
+	,' ' AS CEDENTE /*PARA POSTERIOR DEFINIÇÃO*/ --Nome da Empresa	
+	,' ' AS CNPJ_CEDENTE /*PARA POSTERIOR DEFINIÇÃO*/ --Empresa	
+	,'N' AS FATURAS_EM_ATRASO
+	
+	--Campos Memos por último para resgatar dados pelo Protheus
+	,ZT3_NOSNUM AS DEF_NOSSONRO
+	,ZT3_REMNUM AS DEF_NOSSONRO_REM
+	,ZT3_FORNUM AS DEF_FORM_NOSSONRO
+	,ZT3_CPOLIV AS DEF_CAMPO_LIVRE
+FROM
+	--Consulta com os dados dos títulos
+	DADOS_TITULOS TIT
+	
+	--Consulta de Agendamento de Boletos (Sempre deve retornar 1 registro) - Agendados ou Parametrizado
+	INNER JOIN AGENDAMENTO_BOLETO AGE 	ON 1 = 1
+	
+	--Consulta das Definições do Boleto (Já gerado e pendentes)
+	INNER JOIN DEFINICOES_BOLETO DEF 	ON 1 = 1
+										AND DEF.ZT2_CODIGO = (CASE WHEN TIT.COD_BOLETO = ' ' THEN AGE.COD_BOLETO ELSE TIT.COD_BOLETO END)
+
+WHERE
+	1 = 1
+
+#IIF(!Empty(cOrder) .And. cOrder $ "1,2,3","ORDER BY","")#
+	#IIF(cOrder=="1","E1_PREFIXO,E1_NUM,E1_PARCELA,E1_EMISSAO","")#
+	#IIF(cOrder=="2","E1_VENCREA,E1_EMISSAO,E1_PREFIXO,E1_NUM,E1_PARCELA","")#
+	#IIF(cOrder=="3","A1_CEPC,E1_PREFIXO,E1_NUM,E1_PARCELA,E1_EMISSAO","")#

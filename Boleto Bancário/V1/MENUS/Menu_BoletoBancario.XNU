@@ -1,0 +1,95 @@
+<Menu Status="Enable">
+	<Title lang="pt">Boleto Bancário SEVEN</Title>
+	<Title lang="es">Boleto Bancário SEVEN</Title>
+	<Title lang="en">Boleto Bancário SEVEN</Title>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Boleto Bancário SEVEN</Title>
+		<Title lang="es">Boleto Bancário SEVEN</Title>
+		<Title lang="en">Boleto Bancário SEVEN</Title>
+		<Function>produtosSeven.u_executeBoletoBancarioSeven</Function>
+		<Type>01</Type>
+		<Access>xxxxxxxxxx</Access>
+		<Module>98</Module>
+		<Owner>0</Owner>
+		<KeyWord>
+			<KeyWord lang="pt"></KeyWord>
+			<KeyWord lang="es"></KeyWord>
+			<KeyWord lang="en"></KeyWord>
+		</KeyWord>
+	</MenuItem>			
+	<MenuItem Status="Enable">
+		<Title lang="pt">Cad. Def. do Boleto</Title>
+		<Title lang="es">Cad. Def. do Boleto</Title>
+		<Title lang="en">Cad. Def. do Boleto</Title>
+		<Function>F7VBOL01</Function>
+		<Type>03</Type>
+		<Access>xxxxxxxxxx</Access>
+		<Module>98</Module>
+		<Owner>0</Owner>
+		<KeyWord>
+			<KeyWord lang="pt"></KeyWord>
+			<KeyWord lang="es"></KeyWord>
+			<KeyWord lang="en"></KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Cad. Regras do Boleto</Title>
+		<Title lang="es">Cad. Regras do Boleto</Title>
+		<Title lang="en">Cad. Regras do Boleto</Title>
+		<Function>F7VBOL02</Function>
+		<Type>03</Type>
+		<Access>xxxxxxxxxx</Access>
+		<Module>98</Module>
+		<Owner>0</Owner>
+		<KeyWord>
+			<KeyWord lang="pt"></KeyWord>
+			<KeyWord lang="es"></KeyWord>
+			<KeyWord lang="en"></KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Cad. Mensagens do Boleto</Title>
+		<Title lang="es">Cad. Mensagens do Boleto</Title>
+		<Title lang="en">Cad. Mensagens do Boleto</Title>
+		<Function>F7VBOL03</Function>
+		<Type>03</Type>
+		<Access>xxxxxxxxxx</Access>
+		<Module>98</Module>
+		<Owner>0</Owner>
+		<KeyWord>
+			<KeyWord lang="pt"></KeyWord>
+			<KeyWord lang="es"></KeyWord>
+			<KeyWord lang="en"></KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Monitor Boletos Gerados</Title>
+		<Title lang="es">Monitor Boletos Gerados</Title>
+		<Title lang="en">Monitor Boletos Gerados</Title>
+		<Function>F7VBOL04</Function>
+		<Type>03</Type>
+		<Access>xxxxxxxxxx</Access>
+		<Module>98</Module>
+		<Owner>0</Owner>
+		<KeyWord>
+			<KeyWord lang="pt"></KeyWord>
+			<KeyWord lang="es"></KeyWord>
+			<KeyWord lang="en"></KeyWord>
+		</KeyWord>
+	</MenuItem>
+	<MenuItem Status="Enable">
+		<Title lang="pt">Cad. Agendamento Boletos</Title>
+		<Title lang="es">Cad. Agendamento Boletos</Title>
+		<Title lang="en">Cad. Agendamento Boletos</Title>
+		<Function>F7VBOL05</Function>
+		<Type>03</Type>
+		<Access>xxxxxxxxxx</Access>
+		<Module>98</Module>
+		<Owner>0</Owner>
+		<KeyWord>
+			<KeyWord lang="pt"></KeyWord>
+			<KeyWord lang="es"></KeyWord>
+			<KeyWord lang="en"></KeyWord>
+		</KeyWord>
+	</MenuItem>	
+</Menu>

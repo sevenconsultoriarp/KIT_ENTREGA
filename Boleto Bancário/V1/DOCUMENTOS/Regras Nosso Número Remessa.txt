@@ -1,0 +1,44 @@
+############################################################
+NOSSO NÚMERO REMESSA
+############################################################
+[BANCO_BRADESCO]
+cBancoBoletoBradesco	:= "237"
+cBancoBoletoBicBanco	:= "320" /*Correspondente Bradesco*/
+cBancoBoletoSafra		:= "422" /*Correspondente Bradesco*/
+cBancoBoletoRural		:= "453" /*Correspondente Bradesco*/
+cBancoBoleto 			:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo			:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cAgencTit				:= oClass7VBoletoBancario:getValueBol("AGENCIATIT")
+cCodSeq 				:= oClass7VBoletoBancario:getValueBol("COD_SEQUENCIA")
+cBase 					:= oClass7VBoletoBancario:getValueBol("BASE_NOSSONRO")
+cContrato				:= oClass7VBoletoBancario:getValueBol("CONTRATO")
+cDVRemessa				:= ""
+cNosNroRem				:= ""
+lRecalcDV				:= ( Empty(cCodSeq) )
+cBaseRecalcDV 			:= SubStr(cBase,01,Len(cBase)-1)
+Iif( lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+Iif( oClass7VBoletoBancario:lTrataDVSep, cAgenTSDV := AllTrim(cAgencTit), "" )
+Iif( oClass7VBoletoBancario:lTrataDVSep, cAgenTSDV := StrZero(Val(cAgenTSDV),04), "" )
+Iif( !oClass7VBoletoBancario:lTrataDVSep, cAgenTSDV := StrTran(cAgencTit,"-",""), "" )
+Iif( !oClass7VBoletoBancario:lTrataDVSep, cAgenTSDV := AllTrim(cAgencTit), "" )
+Iif( !oClass7VBoletoBancario:lTrataDVSep, cAgenTSDV := StrZero(Val(cAgenTSDV),04), "" )
+/*Define Nº Remessa BicBancoBoleto*/
+Iif( cBancoTitulo == cBancoBoletoBicBanco , cDVRemessa := libSeven.u_Modulo11( StrZero(Val(cAgenTSDV),03) + cCodSeq,2,9,,cBancoBoleto) , "")
+Iif( cBancoTitulo == cBancoBoletoBicBanco .And. cDVRemessa == "0", cDVRemessa := "1" , Iif( cDVRemessa == "P", cDVRemessa := "0" ,"") )
+Iif( cBancoTitulo == cBancoBoletoBicBanco .And. !lRecalcDV, cNosNroRem := "0" + cCodSeq + cDVRemessa, "") /*Nosso Número para CNAB - 01+06+01=8 Dígitos (Evita ter que calcular durante o CNAB)*/
+Iif( cBancoTitulo == cBancoBoletoBicBanco .And. lRecalcDV, cNosNroRem := "0" + SubStr(cBase,08,06) + cDVRemessa, "" ) /*Nosso Número para CNAB - 01+06+01=8 Dígitos (Evita ter que calcular durante o CNAB) - Quando for calculado o DV em nosso número já existente*/
+Iif( cBancoTitulo == cBancoBoletoBicBanco , oClass7VBoletoBancario:setValueBol("NOSSONRO_REMESSA",cNosNroRem), "")
+Iif( cBancoTitulo == cBancoBoletoBicBanco , oClass7VBoletoBancario:setValueBol("DV_REMESSA",cDVRemessa), "")
+/*Define Nº Remessa Banco Rural*/
+Iif( cBancoTitulo == cBancoBoletoRural, cDVRemessa := libSeven.u_Modulo10(StrZero(Val(cAgenTSDV),04) + Left(cContrato,10) + Left(cCodSeq,07),,,"3791",.F.,"Divisor") , "") /*07+01=8 Dígitos (Evita ter que calcular durante o CNAB) - modulo10 (4+10+7=21)*/
+Iif( cBancoTitulo == cBancoBoletoRural .And. !lRecalcDV, cNosNroRem := cCodSeq + cDVRemessa ) /*Nosso Número para CNAB*/
+Iif( cBancoTitulo == cBancoBoletoRural .And. lRecalcDV, cNosNroRem := SubStr(cBase,06,07) + cDVRemessa, "") /*Nosso Número para CNAB*/
+Iif( cBancoTitulo == cBancoBoletoRural , oClass7VBoletoBancario:setValueBol("NOSSONRO_REMESSA",cNosNroRem), "")
+Iif( cBancoTitulo == cBancoBoletoRural , oClass7VBoletoBancario:setValueBol("DV_REMESSA",cDVRemessa), "")
+/*Define Nº Remessa Banco Safra*/
+Iif( cBancoTitulo == cBancoBoletoSafra , cBasePadrao := StrZero(Val(cCodSeq),08) , "") /*8 Dígitos*/
+Iif( cBancoTitulo == cBancoBoletoSafra .And. lRecalcDV, cBase := cBaseRecalcDV, cBase := cBasePadrao )
+Iif( cBancoTitulo == cBancoBoletoSafra, cDVRemessa := libSeven.u_Modulo11(cBase,2,9,,cBancoBoleto) , "") /*DV Nosso Número para o CNAB - Safra*/
+Iif( cBancoTitulo == cBancoBoletoSafra, cNosNroRem = cBase + cDVRemessa ) /*Nosso Número para o CNAB - Safra*/
+Iif( cBancoTitulo == cBancoBoletoSafra , oClass7VBoletoBancario:setValueBol("NOSSONRO_REMESSA",cNosNroRem), "")
+Iif( cBancoTitulo == cBancoBoletoSafra , oClass7VBoletoBancario:setValueBol("DV_REMESSA",cDVRemessa), "")

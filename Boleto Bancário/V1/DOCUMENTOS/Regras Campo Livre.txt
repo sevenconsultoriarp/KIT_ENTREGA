@@ -1,0 +1,151 @@
+############################################################
+CAMPO LIVRE
+############################################################
+[001-BANCO_DO_BRASIL]
+cAgencSDV		:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cContaSDV		:= oClass7VBoletoBancario:getValueBol("CONTA_SDV_BOLETO")
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+nDigConv 		:= oClass7VBoletoBancario:getValueBol("DIG_CONVENIO")
+cNossoNro		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNossoNroSemDV	:= cNossoNro
+cCampoLivre		:= ""
+Iif( nDigConv == 4 , cNossoNroSemDV := Left(cNossoNro,11) , "")
+Iif( nDigConv == 6 .And. Len(cNossoNro) == 12, cNossoNroSemDV := Left(cNossoNro,11) , "") /*Nosso Número com 11 Dígitos + 1 DV*/
+cCampoLivre 	:= Left(cNossoNroSemDV,11) + Left(cAgencSDV,4) + StrZero(Val(cContaSDV),8) + Left(cCarteira,2) /*11 + 4 + 8 + 2 = 25*/
+Iif( nDigConv == 6 .And. Len(cNossoNro) == 17 , cCampoLivre := Left("000000",6) + Left(cNossoNroSemDV,17)+Left("21",2) , "") /*6 + 17 + 2 = 25*/
+Iif( nDigConv == 7 , cCampoLivre := Left("000000",6) + Left(cNossoNroSemDV,17) + Left(cCarteira,2) , "") /*6 + 17 + 2 = 25*/
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /*Tamanho 25*/
+
+[033-BANCO_SANTANDER_BANESPA]
+nBytesCNAB 		:= oClass7VBoletoBancario:getValueBol("BYTES_CNAB")
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA") /*Carteiras = 101-Cobrança Simples Rápida COM Registro; 102-Cobrança simples – SEM Registro; 201-Penhor Rápida com Registro*/
+cConvenio 		:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+cNossoNro		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNNumComDV  	:= cNossoNro
+cCampoLivre		:= ""
+IIF(nBytesCNAB == 400 .And. Len(cNNumComDV) <> 9,cCampoLivre := Left("9",1) + StrZero(val(cConvenio),7) + Left("00000",5) + Left(cNNumComDV,8) + Left("0",1) + Left(cCarteira,3),"") /*1 + 7 + 5 + 8 + 1 + 3 = 25*/
+IIF(nBytesCNAB == 400 .And. Len(cNNumComDV) == 9,cCampoLivre := Left("9",1) + StrZero(val(cConvenio),7) + Left("0000",4) + Left(cNNumComDV,9) + Left("0",1) + Left(cCarteira,3),"") /*1 + 7 + 5 + 8 + 1 + 3 = 25*/
+IIF(nBytesCNAB <> 400,cCampoLivre := Left("9",1) + StrZero(val(cConvenio),7) + Left(cNNumComDV,13) + Left("0",1) + Left(cCarteira,3),"") /* 1 + 7 + 13 + 1 + 3 = 25 */
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /* Tamanho 25 */
+
+[041-BANCO_BANRISUL]
+cBancoBoleto 	:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cAgencSDV		:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cContaSDV		:= oClass7VBoletoBancario:getValueBol("CONTA_SDV_BOLETO")
+cNossoNro		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNNumSemDV		:= Left(cNossoNro,Len(cNossoNro)-2)
+cCampoLivre 	:= Left("2",1) + Left("1",1) + Left(cAgencSDV,3) + StrZero(Val(cContaSDV),7) + Left(cNNumSemDV,8) + Left(cBancoBoleto,3) + Right(cNossoNro,2) /*1 + 1 + 3 + 7 + 8 + 3 + 2 = 25*/
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /*Tamanho 25*/
+
+[104-BANCO_CAIXA_ECONOMICA_FEDERAL]
+cBancoBoleto 	:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cModeloCEF  	:= UPPER(Alltrim(GetNewPar("7V_MODCEF", 'SIGCB')))
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA") /*Carteiras = 101-Cobrança Simples Rápida COM Registro; 102-Cobrança simples – SEM Registro; 201-Penhor Rápida com Registro*/
+cAgencia		:= oClass7VBoletoBancario:getValueBol("AGENCIA_BOLETO")
+cConvenio 		:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+cNossoNro		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNNumSemDV		:= ""
+IIF(cModeloCEF == "SICOB",cNNumSemDV := Left(cNossoNro,10),"")
+IIF(cModeloCEF == "SICOB",cCampoLivre := Left(cNNumSemDV,10) + Left(cAgencia,4) + Left(cConvenio,11),"") /*10 + 4 + 11 = 25*/
+IIF(cModeloCEF == "SIGCB",cConvenio := STRTRAN(Alltrim(cConvenio), '-', ''),"")
+IIF(cModeloCEF == "SIGCB",cNNumSemDV := Left(cNossoNro,17),"")
+IIF(cModeloCEF == "SIGCB",cBase := Right(cConvenio,7) + Substr(cNNumSemDV, 3, 3) + SubStr(cCarteira, 1, 1) + Substr(cNNumSemDV, 6, 3) + SubStr(cCarteira, 2, 1) + Substr(cNNumSemDV, 9, 9)
+IIF(cModeloCEF == "SIGCB",cDvCampoLivre := modulo11(cBase,2,9,,cBancoBoleto),"")
+IIF(cModeloCEF == "SIGCB",cCampoLivre := cBase + cDvCampoLivre,"") /*7 + 3 + 1 + 3 + 1 + 9 + 1 = 25*/
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /*Tamanho 25*/
+
+[237-BANCO_BRADESCO]
+cBancoBoletoBradesco	:= "237"
+cBancoBoletoBicBanco	:= "320"
+cBancoBoletoSafra		:= "422"
+cBancoBoletoRural		:= "453"
+cBancoBoletoCorresp		:= cBancoBoletoBicBanco + "," + cBancoBoletoSafra + cBancoBoletoRural
+cBancoBoleto 			:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cBancoTitulo			:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cAgencSDV				:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cContaSDV				:= oClass7VBoletoBancario:getValueBol("CONTA_SDV_BOLETO")
+cNossoNro				:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cCarteira 				:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cNNumSemDV				:= ""
+cCampoLivre				:= ""
+IIF(cBancoTitulo == cBancoBoletoBradesco, cNNumSemDV := Left(cNossoNro,11), "") /*Sem Banco Correspondente*/
+IIF(cBancoTitulo == cBancoBoletoBradesco, cCampoLivre := Left(cAgencSDV,4) + Left(cCarteira,2) + Left(cNNumSemDV,11) + StrZero(Val(cContaSDV),7) + Left("0",1), "") /*Sem Banco Correspondente 4 + 2 + 11 + 7 + 1 = 25*/
+IIF(cBancoTitulo $ cBancoBoletoCorresp, cNNumSemDV := Left(cNossoNro,13), "") /*Com  Banco Correspondente 02+04+07=13 Dígitos*/
+IIF(cBancoTitulo $ cBancoBoletoCorresp, cCampoLivre := Left(cAgencSDV,4) + Left(cNNumSemDV,13) + StrZero(Val(cContaSDV),7) + Left("0",1), "") /* Com  Banco Correspondente 4 + 13 + 7 + 1 = 25*/
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /*Tamanho 25*/
+
+[246-BANCO_ABC]
+cAgencSDV		:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cContaSDV		:= oClass7VBoletoBancario:getValueBol("CONTA_SDV_BOLETO")
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cNossoNro		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cContrato		:= oClass7VBoletoBancario:getValueBol("CONTRATO")
+cNNumComDV  	:= cNossoNro
+cCampoLivre 	:= Left(cAgencSDV,4) + Left(cCarteira,3) + StrZero(Val(cContrato),7) + Left(cNNumComDV,11) /* 4 + 3 + 7 + 11 = 25 */
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /* Tamanho 25 */
+
+[341-BANCO_ITAU]
+cAgencSDV		:= AllTrim(oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO"))
+cContaSDV		:= AllTrim(oClass7VBoletoBancario:getValueBol("CONTA_SDV_BOLETO"))
+cCarteira 		:= AllTrim(oClass7VBoletoBancario:getValueBol("CARTEIRA"))
+cNossoNro		:= AllTrim(oClass7VBoletoBancario:getValueBol("NOSSONRO"))
+cNNumSemDV 		:= Substr(cNossoNro,1,Len(cNossoNro)-1) /* Nosso Núm. sem DV */
+cDVConta		:= libSeven.u_Modulo10(cAgencSDV + cContaSDV,2,1,,,"Divisor")
+cCampoLivre 	:= Left(cCarteira,3) + Left(cNNumSemDV,8) + Left(Right(cNossoNro,1),1) + Left(cAgencSDV,4) + StrZero(Val(cContaSDV),5) + cDVConta + Left("000",3) /* 3 + 8 + 1 + 4 + 5 + 1 + 3 = 25 */
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /* Tamanho 25 */
+
+[399-BANCO_HSBC]
+cAgencia		:= oClass7VBoletoBancario:getValueBol("AGENCIA_BOLETO")
+cConta			:= oClass7VBoletoBancario:getValueBol("CONTA_BOLETO")
+cCarteira 		:= AllTrim(oClass7VBoletoBancario:getValueBol("CARTEIRA"))
+cConvenio 		:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+cNossoNro		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNNumComDV    	:= cNossoNro
+cCampoLivre		:= ""
+IIF(cCarteira <> "CNR",cCampoLivre := Left(cNNumComDV,11) + Left(cAgencia,4) + StrZero(val(cConta),7) + Left(cCarteira,2) + Left("1",1),"") /*11 + 4 + 7 + 2 + 1 = 25*/
+IIF(cCarteira == "CNR",cCampoLivre := cConvenio + StrZero(Val(SubStr(cNossoNro,1,10)),13) + libSeven.u_GetDataJuliano(StoD(cVencto)) + "2" /*2 - Codigo da carteira CNR*/
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /*Tamanho 25*/
+
+[422-BANCO_SAFRA]
+cBancoBoleto 		:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cAgencia			:= oClass7VBoletoBancario:getValueBol("AGENCIA_BOLETO")
+cConta				:= oClass7VBoletoBancario:getValueBol("CONTA_BOLETO")
+cAgencSDV			:= oClass7VBoletoBancario:getValueBol("AGENCIA_SDV_BOLETO")
+cContaSDV			:= oClass7VBoletoBancario:getValueBol("CONTA_SDV_BOLETO")
+cBancoTitulo		:= oClass7VBoletoBancario:getValueBol("BANCO_TITULO")
+cBancoBoletoBradesco:= "237"
+cBancoBoletoItau	:= "341"
+cNossoNro			:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNNumComDV			:= cNossoNro
+cCampoLivre			:= ""
+IIF(cBancoTitulo == cBancoBoletoBradesco, cCampoLivre := Left("7",1) + Left(cAgencia,4) + StrZero(val(cConta),10) + Left(cNossoNro,9) + Left("2",1), "") /*1 + 4 + 10 + 9 + 1 = 25*/
+IIF(cBancoTitulo == cBancoBoletoItau, cDvCampoLivre := libSeven.u_Modulo10(cAgencSDV + cContaSDV,2,1,,,"Divisor") ,"")
+IIF(cBancoTitulo == cBancoBoletoItau, cCampoLivre := Left(cCarteira,3) + Left(cNNumComDV,9) + Left(cAgencSDV,4) + StrZero(Val(cContaSDV),5) + cDvCampoLivre + Left("000",3), "") /*3 + 8 + 1 + 4 + 5 + 1 + 3 = 25*/
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /*Tamanho 25*/
+
+[745-BANCO_CITIBANK]
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cNossoNro		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cConta			:= oClass7VBoletoBancario:getValueBol("CONTA_BOLETO")
+cCampoLivre		:= Left("3",1) + StrZero(Val(cCarteira),3) + SubStr(cConta,2,6) + SubStr(cConta,8,2) + SubStr(cConta,10,1) + Left(cNossoNro,12) /*1 + 3 + 6 + 2 + 1 + 12 = 25*/
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /*Tamanho 25*/
+
+[755-BANCO_BANK_OF_AMERICA]
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cConvenio 		:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+cNossoNro		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNNumSemDV  	:= SubStr(cNossoNro,2,10)
+cCampoLivre		:= Left(cConvenio,12) + Left(cNNumSemDV,10) + Left(cCarteira,2) + Left("4",1) /*12 + 10 + 2 + 1 = 25*/
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /*Tamanho 25*/
+
+[756-BANCO_BANCOOB_SICOOB]
+cBancoBoleto 	:= oClass7VBoletoBancario:getValueBol("BANCO_BOLETO")
+cAgencia		:= oClass7VBoletoBancario:getValueBol("AGENCIA_BOLETO")
+cConta			:= oClass7VBoletoBancario:getValueBol("CONTA_BOLETO")
+cCarteira 		:= oClass7VBoletoBancario:getValueBol("CARTEIRA")
+cConvenio 		:= oClass7VBoletoBancario:getValueBol("COD_CONVENIO")
+cNossoNro		:= oClass7VBoletoBancario:getValueBol("NOSSONRO")
+cNNumComDV		:= cNossoNro
+/*Carteira + Agência/Num. Coop. + Modalidade Cobr + Conta com DV  +Nosso Num. com DV + Num Parcela*/
+cCampoLivre := StrZero(Val(cCarteira),1) + Left(cAgencia,4) + StrZero(Val(cConvenio),2) + StrZero(val(cConta),7) + Left(cNNumComDV,8) + Left("001",3) /* 1 + 4 + 2 + 7 + 8 + 3 = 25*/
+oClass7VBoletoBancario:setValueBol("CAMPO_LIVRE",cCampoLivre) /*Tamanho 25*/

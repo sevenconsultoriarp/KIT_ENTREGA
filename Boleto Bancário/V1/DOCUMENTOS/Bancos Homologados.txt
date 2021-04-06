@@ -1,0 +1,19 @@
+############################################################
+CÓDIGOS DE BANCOS HOMOLOGADOS
+############################################################
+BANCO_DO_BRASIL						"001"
+BANCO_SANTANDER_BANESPA				"033"
+BANCO_BANRISUL						"041"
+BANCO_CAIXA_ECONOMICA_FEDERAL		"104"
+BANCO_BRADESCO						"237"
+BANCO_ABC							"246"
+BANCO_ITAU							"341"
+BANCO_BIC_BANCO						"320"
+BANCO_SANTANDER						"353"
+BANCO_HSBC							"399"
+BANCO_UNIBANCO						"409"
+BANCO_SAFRA							"422"
+BANCO_RURAL							"453"
+BANCO_CITIBANK						"745"
+BANCO_BANK_OF_AMERICA				"755"
+BANCO_BANCOOB_SICOOB				"756"
