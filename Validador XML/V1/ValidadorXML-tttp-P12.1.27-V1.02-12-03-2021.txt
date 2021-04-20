@@ -1,0 +1,18 @@
+Compilation Result
+
+Show 
+100
+ entries
+Search:
+File Name	Result	Message	Detail	Path
+Class7VValidadorXML.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/Fontes/Classes/Class7VValidadorXML.tlpp
+F7VDANFPVALXML.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/Fontes/Rotinas PRW/F7VDANFPVALXML.prw
+F7VDANFRVALXML.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/Fontes/Rotinas PRW/F7VDANFRVALXML.prw
+F7VXML01.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/Fontes/Rotinas PRW/F7VXML01.prw
+F7VXML02.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/Fontes/Rotinas PRW/F7VXML02.prw
+F7VXML03.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/Fontes/Rotinas PRW/F7VXML03.prw
+InstallValidadorXML.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/Fontes/Rotinas TLPP/InstallValidadorXML.tlpp
+PEValidadorXML.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/Fontes/Rotinas TLPP/PEValidadorXML.tlpp
+WSIPServicos.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/ValidadorXML/Fontes/WebServiceTOTVSIP/WSIPServicos.prw
+Showing 1 to 9 of 9 entries
+PREVIOUS1NEXT

@@ -22,7 +22,7 @@ Revisões		: -
 #( IIF(oClass7VBoletoBancario:getTypeOfAction() == "2",cFiltroAcaoClass7VBoletoBancario := "AND SE1.E1_NUMBCO <> ' '",""), "")# /*ACTION_REIMPRIMIR_BOLETO - Nosso Número já Gerado*/
 #( IIF(oClass7VBoletoBancario:getTypeOfAction() == "3",cFiltroAcaoClass7VBoletoBancario := "AND SE1.E1_NUMBCO <> ' ' AND SE1.E1_NUMBOR = ' ' ",""), "")# /*ACTION_REGERAR_BOLETO - Regerar Boletos (Considera que os Boletos já foram gerados) e recria os nossos números SEM borderô gerado*/
 #( IIF(oClass7VBoletoBancario:getTypeOfAction() == "4",cFiltroAcaoClass7VBoletoBancario := "AND SE1.E1_NUMBCO <> ' ' AND SE1.E1_NUMBOR = ' ' ",""), "")# /*ACTION_CALC_DV_NOSSO_NUMERO - Calcular DV Nosso Número (Considera que os Boletos já foram gerados) e recalcula apenas o DV do Nosso Número SEM borderô gerado*/
-#( IIF(oClass7VBoletoBancario:getTypeOfAction() == "5",cFiltroAcaoClass7VBoletoBancario := "", "")#  /*ACTION_GERAR_REIMPRIMIR_BOLETO - Gera Boletos não gerados ou reimprime se já gerado*/
+#( IIF(oClass7VBoletoBancario:getTypeOfAction() == "5",cFiltroAcaoClass7VBoletoBancario := "",""), "")#  /*ACTION_GERAR_REIMPRIMIR_BOLETO - Gera Boletos não gerados ou reimprime se já gerado*/
 #( lAtivaAgendamento := GetNewPar("7V_BOLAGEN",.T.) ,"")#
 #( cTipoVencto 		:= oClass7VBoletoBancario:getTypeOfDue() ,"")#
 #( lFiltered 		:= oClass7VBoletoBancario:lFiltered ,"")#
@@ -318,7 +318,7 @@ SELECT
 	,TIT.E1_ACRESC AS ACRESCIMO
 	,TIT.E1_SDACRES AS SALDO_ACRESCIMO
 	,TIT.E1_DECRESC AS DECRESCIMO
-	,TIT.E1_SDDECRE AS SALDO_DESCRECIMO
+	,TIT.E1_SDDECRE AS SALDO_DECRESCIMO
 	,TIT.E1_NUMBCO AS NOSSONRO
 	,#IIf(SE1->(FieldPos("E1_7VNUMB2")) > 0,"TIT.E1_7VNUMB2","'" + Space(20) + "'")# AS NOSSONRO_REMESSA /*Nosso Número 2 para CNAB de Remessa - Alguns Bancos*/
 	,TIT.E1_CODDIG AS LINHA_DIGITAVEL

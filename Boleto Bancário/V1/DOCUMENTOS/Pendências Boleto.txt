@@ -1,0 +1,15 @@
+Pendências Boleto:
+- Filtro de Boleto na Geração de Borderô
+- Backup e Restore na Geração e Exclusão de Borderô
+- Acesso a Impressão de Boleto na Rotina de Contas a Receber
+- Tela de Seleção de Títulos com Totais, Nº de Registro posicionado e total de registros, busca, filtros
+- Tela de Seção de Boletos com GRID MVC
+- Layout do Boleto com Linhas mais retas
+- Envio do Boleto por E-mail pela Interface
+- Gatilho de Arquivo de Envio e Retorno do CNAB
+- Aumento do Campo E1_NUMBCO para 18 nativamente
+- Instalador do Boleto Bancário - Necessário instalar manualmente - Dicionários e fazer carga de dados
+
+Validação:
+- Validar se Boleto retornado pelo Banco via CNAB, gravará os dados do portador, agência, conta e nosso número, sendo considerado 
+como boleto gerado pelo boleto bancário SEVEN, autorecuperando o código da def. do boleto e gravando no SE1 - Campo: E1_7VCDBOL

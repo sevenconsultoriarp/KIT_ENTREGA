@@ -1,0 +1,17 @@
+Compilation Result
+
+Show 
+100
+ entries
+Search:
+File Name	Result	Message	Detail	Path
+AutoBoletoBancario.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/BoletoBancario/Fontes/Rotinas TLPP/AutoBoletoBancario.tlpp
+Class7VBoletoBancario.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/BoletoBancario/Fontes/Classes/Class7VBoletoBancario.tlpp
+F7VBOL01.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/BoletoBancario/Fontes/Rotinas PRW/F7VBOL01.prw
+F7VBOL02.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/BoletoBancario/Fontes/Rotinas PRW/F7VBOL02.prw
+F7VBOL03.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/BoletoBancario/Fontes/Rotinas PRW/F7VBOL03.prw
+F7VBOL04.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/BoletoBancario/Fontes/Rotinas PRW/F7VBOL04.prw
+F7VBOL05.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/BoletoBancario/Fontes/Rotinas PRW/F7VBOL05.prw
+LayoutBoletoBancario.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/BoletoBancario/Fontes/Rotinas TLPP/LayoutBoletoBancario.tlpp
+Showing 1 to 8 of 8 entries
+PREVIOUS1NEXT

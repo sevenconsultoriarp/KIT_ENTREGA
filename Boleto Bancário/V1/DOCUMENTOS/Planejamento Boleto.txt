@@ -1,0 +1,128 @@
+10.548 linhas classboleto
+ClassBoleto2
+Boleto2
+WSBOLETO_Server
+AutoBol
+ImpBoleto - Pelo Browse do Financeiro
+ManBol - Interface
+ManNossoNum - Ajustes Borderô
+
+PE Borderô
+PE Título
+
+Características Boleto Bancário SEVEN
+-> Cadastro de Definições do Boleto (Vinculado ao SEE);
+-> Logotipos de Bancos extraídos do Cadastro de Definições do Boleto - BITMAP;
+-> Cadastro de Regras do Boleto (Regras para cada banco pré-configurada) - Define: Nosso Número, Código de Barras, entre outras informações via Cadastro com Código ADVPL;
+-> Cadastro de Mensagens para o Boleto (Com possibilidade de inclusão de código ADVPL embarcado);
+-> Cadastro de Agendamento de Boleto
+-> Regra de Vencimento do Boleto Flexível - Via parametrização
+-> Regra de Valor do Boleto Flexível - Via parametrização (Usa a função Padrão SomaAbat)
+-> Query de Carga de Dados dos Títulos no Cadastro de Queries (LibSEVEN) - Possibilta alta flexibilidade de personalização pelo cliente;
+-> Grupo de Parâmetros para filtros dos Títulos (Quando via Interface) no Cadastro de Grupos de Parâmetros - Possibilta alta flexibilidade de personalização pelo cliente;
+-> Apresentação da Seleção dos dados em MarkBrowse (Inicialmente com Class7VGridLib e posteriormente em MVC - F7VGEN07) - Qdo não está em JOB;
+-> Possibilide de Impressão de Boletos em JOB;
+-> Possibilide de Impressão de Boletos via API;
+-> PE para geração do Boleto, com ou sem impressão após geração da NF de Saída (NF-e,CT-e);
+-> Geração de Boleto conforme o Agendamento de Boletos (Se parametrizado) - Query no Cadastro de Queries - Possibilita alta flexibilidade de personalização pelo cliente;
+-> Uso de Recno para consulta e gravação de dados de títulos - Mais Agilidade;
+-> Gravação da Linha Digitável e Código de Barras do Boleto no Título e nos dados históricos, mas dados auxiliares que compôe o Boleto para Auditorias;
+-> Gravação de Histórico de Boletos Gerados;
+-> Possibilidade de Gravação do Arquivo PDF do Boleto no Servidor e gravação do caminho no histórico podendo re-imprimir mais rapidamente;
+-> Rotina Automática em TLPP para geração e impressão do Boleto - Plugin para o Integrador de Dados;
+-> Impressão do Boleto com FwMsPrinter (Possibilita impressão em JOB e APIs);
+-> Fonte do Layout de Boleto disponibilizado para os clientes;
+-> Fonte de PE de Boleto disponibilizado para os clientes;
+-> Desenvolvido com Rotinas MVC e TLPP;
+-> Aplicação de Conceitos de Código Limpo e Boas Práticas;
+
+
+-> Gravar Dados do Título pelo RecnoSE1
+-> Criar Componente PDFLib
+-> Segregar Complementamente a parte do relatório do Boleto da montagem do boleto
+-> API REST JSON para consumo do boleto e impressão do boleto
+-> Nova Classe de Boleto
+. Geração de Nosso Número conforme as regras do Banco
+. Grava nosso número e o código do boleto
+. Grava histórico do nosso número gerado vinculados aos títulos em nova tabela com rastreabilidade
+. Rotinas auxiliares do boleto
+. Usar Get and SetValue
+. Carga de Dados do Boleto - Dados do Boleto e Dados do Título(cadastro de queries)
+. SomaAbat
+. Boleto Gerado diretamente para cada título
+. Carga de Dados dos títulos a serem gerados (cadastro de queries)
+. Apresentação dos Dados com Markbrowse - TcBrowse
+=> Se necessário edição de e-mail - Abrir Tela MVC Modelo 1 - Editar e alterar o browse
+-> Header deve ser montado na carga de dados do SQL
+
+-> Rotina automática em TLPP para geração e impressão do boleto
+-> Logotipos no BD
+-> Cadastro do Boleto (Segregado do SEE) - Cadastro MVC
+. Filial, Data, Cód. Cad. Boleto (Antigo SEE), Campos do Banco Associado (SEE), Cód. Regra Boleto
+. Local de Pagamento, entre outros campos personalizados da SEE
+. Nº do Contrato
+. Nº do CIP
+. Local de Pagamento
+. Tipo de Cobrança
+. Uso do Banco
+. Espécie de Documento (Tratar ADVPL com #)
+. Gatilhos de Dados Padrões - SEE, SM0 SA6
+. Dados do Boleto, Cedente, Carteira, Id Carteira, Convênio, Logotipo - Usar Campos Padrões e usar campos da SEE vinculados a esse código
+. Com DV Agência e Conta Segregados (Com Zeros a Esquerda)
+-> Cadastro de Regras de Geração de Boleto (Executado no momento da carga dos dados do Banco) - Somente Admins ou Autorizados - Cadastro MVC
+. Cód. Regra
+. Cód. Banco, Nome Banco (Virtual)
+. Data Base Fator de Vencto
+. Descrição
+. Observações
+. Bloqueado
+. Regra de Sistema
+. Campo Memo - Nosso Número - Fórmula ADVPL
+. Campo Memo - Nosso Número Remessa - Fórmula ADVPL
+. Campo Memo - Código de Barras - Fórmula ADVPL
+. Campo Memo - Formato Nosso Número - Fórmula ADVPL
+-> Cadastro de Mensagens do Boleto no Cadastro - Usar Expressões ADVPL com #, Usar GetValue do boleto
+Pode ser usado * em Banco, Agência e Conta, Cód. Boleto
+Campo Memo com o Contéudo da Mensagem
+-> Cadastro de Agendamento Boleto
+. Cód. Boleto
+. Data Ref
+. FilOri
+. Risco
+
+Futuro:
+A1_GRPTRIB
+A1_GRPVEN - ACY
+A1_CODSEG - AOV
+
+PE Necessários:
+. Para modificar Query de Busca dos dados - Não mais - usar cadastro de queries
+. Para incluir perguntas para a query - Não mais - usar cadastro de grupo de parâmetros
+. Para modificar o layout do relatório - Não mais - personalizar o layout do fonte do relatório
+. Para modificar dados carregados - Necessário - Deve receber aHeader/Acols que pode ser modificado
+
+Analisar recursos de telas - Adicionar Grid da Lib com o máximo de recursos padrões
+
+aAdd(aBotoes , {'EMAIL' 		, {|| (lExec := .T., oBoleto:lMailBol := .T. , oDlg:End() ) } , "Envia Boleto por Email..." , "Envia Boleto por Email" })
+		aAdd(aBotoes , {'RELOAD' 		, {|| reloadData(@oBoleto,@oLista) } , "Recarrega os Dados..." , "Recarrega os Dados" })
+		aAdd(aBotoes , {'PAPEL_ESCRITO' , {|| showRecord(@oBoleto,@oLista) } , "Visualiza o Registro Selecionado..." , "Visualizar Registro" })
+		aAdd(aBotoes , {'PAGEUP'  		, {|| ordData(@oBoleto,@oLista) } , "Ordena os Registros Conforme o Campo Selecionado..." , "Ordenar Registros"	})
+		aAdd(aBotoes , {'TK_FIND'  		, {|| findData(@oBoleto,@oLista) } , "Localiza Registros Conforme o Campo Selecionado..." , "Localizar Registros" })
+		aAdd(aBotoes , {'PMSFILTER'  	, {|| filterData(@oBoleto,@oLista,.F.,@cRegistros,@oSayReg,@nContSel,@nContNSel,@nSomaSel,@nSomaNSel) } , "Filtra Registros Conforme o Campo e Operador Selecionado..." , "Filtrar Registros" })
+		aAdd(aBotoes , {'REFRESH'  		, {|| filterData(@oBoleto,@oLista,.T.,@cRegistros,@oSayReg,@nContSel,@nContNSel,@nSomaSel,@nSomaNSel) } , "Limpar os Filtros Aplicados..." , "Limpar Filtros" })
+
+		//Definição de Botões Adicionais						    
+		aAdd(aBotoes , {'SELECT'   			, {|| typeOfSelection(@oBoleto) } , "Altera o Tipo de Seleção..."  	, "Tipo de Seleção"  })
+		aAdd(aBotoes , {'SELECTALL'   		, {|| selectAllData(@oBoleto,@oLista,.T.,@cRegistros,@oSayReg,@nContSel,@nContNSel,@nSomaSel,@nSomaNSel) } , "Marcar Todos os Registros..."  	, "Marcar Todos"  		})
+		aAdd(aBotoes , {'UNSELECTALL'   	, {|| selectAllData(@oBoleto,@oLista,.F.,@cRegistros,@oSayReg,@nContSel,@nContNSel,@nSomaSel,@nSomaNSel) } , "Desmarcar Todos os Registros..." , "Desmarcar Todos" 		})
+		aAdd(aBotoes , {'INVERTSELECTION' 	, {|| selectAllData(@oBoleto,@oLista,Nil,@cRegistros,@oSayReg,@nContSel,@nContNSel,@nSomaSel,@nSomaNSel) } , "Inverte a Seleção dos Registros..." , "Inverte Seleção"	})						
+
+Campos Personalizados
+SE1
+Nosso Número Remessa (Diferente do Padrão)
+E1_ZZESPDC
+E1_ZZNUMB2
+E1_ZZSUBCO
+E1_CODBAR
+E1_CODDIG
+
