@@ -9,24 +9,33 @@ centralProcess.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FR
 Class7VArraysLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VArraysLib.tlpp
 Class7VAutoExecLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VAutoExecLib.tlpp
 Class7VAutoMVCLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VAutoMVCLib.tlpp
+Class7VConvDataLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VConvDataLib.tlpp
 Class7VDateTimeLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VDateTimeLib.tlpp
 Class7VExcelLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VExcelLib.tlpp
+Class7VFileLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VFileLib.tlpp
 Class7VFont.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VFont.tlpp
 Class7VGridColumnLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VGridColumnLib.tlpp
 Class7VGridLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VGridLib.tlpp
 Class7VLockLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VLockLib.tlpp
 Class7VLogLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VLogLib.tlpp
 Class7VMailLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VMailLib.tlpp
+Class7VMainLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VMainLib.tlpp
 Class7VNFeLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VNFeLib.tlpp
 Class7VNumericLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VNumericLib.tlpp
+Class7VParamBoxLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VParamBoxLib.tlpp
 Class7VParamLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VParamLib.tlpp
 Class7VPDFLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VPDFLib.tlpp
 Class7VSelectorLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VSelectorLib.tlpp
+Class7VSqlLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VSqlLib.tlpp
 Class7VStringsLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VStringsLib.tlpp
+Class7VTcBrowseLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VTcBrowseLib.tlpp
+Class7VUsersLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VUsersLib.tlpp
+Class7VUtilsLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VUtilsLib.tlpp
 ComponenteAutoExec.out	SKIPPED	File extension not allowed		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Temp/ComponenteAutoExec.out
 convAcolsToString.out	SKIPPED	File extension not allowed		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Temp/convAcolsToString.out
 ESP2NOME_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/PE/ESP2NOME_pe.prw
 ESPNOME_pe.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/PE/ESPNOME_pe.prw
+executeFormulas.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas TLPP/executeFormulas.tlpp
 F7VGEN01.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN01.prw
 F7VGEN02.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN02.prw
 F7VGEN03.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN03.prw
@@ -38,6 +47,7 @@ F7VGEN08.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK
 F7VGEN09.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN09.prw
 F7VGEN10.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN10.prw
 F7VGEN11.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN11.prw
+F7VGEN12.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN12.prw
 sevenQueriesReports.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas TLPP/sevenQueriesReports.tlpp
 7V_semFundo.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7V_semFundo.png
 7V_semFundo_Icone.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7V_semFundo_Icone.png
@@ -45,16 +55,8 @@ sevenQueriesReports.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEV
 7V_semFundo_Pequeno.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7V_semFundo_Pequeno.png
 7VIcone.bmp	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7VIcone.bmp
 7VLogo.bmp	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7VLogo.bmp
-Class7VFileLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VFileLib.tlpp
-Class7VMainLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VMainLib.tlpp
-Class7VParamBoxLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VParamBoxLib.tlpp
-Class7VSqlLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VSqlLib.tlpp
-Class7VTcBrowseLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VTcBrowseLib.tlpp
-Class7VUsersLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VUsersLib.tlpp
-Class7VUtilsLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VUtilsLib.tlpp
-executeFormulas.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas TLPP/executeFormulas.tlpp
 IconePDF.bmp	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/IconePDF.bmp
 IconePDF.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/IconePDF.png
 IconePDF_Icone.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/IconePDF_Icone.png
-Showing 1 to 51 of 51 entries
+Showing 1 to 53 of 53 entries
 PREVIOUS1NEXT

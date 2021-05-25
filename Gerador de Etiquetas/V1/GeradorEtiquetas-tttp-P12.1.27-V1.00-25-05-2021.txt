@@ -1,0 +1,13 @@
+Compilation Result
+
+Show 
+100
+ entries
+Search:
+File Name	Result	Message	Detail	Path
+F7VETQ01.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/GeradorDeEtiquetas/Fontes/Rotinas PRW/F7VETQ01.prw
+F7VETQ02.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/GeradorDeEtiquetas/Fontes/Rotinas PRW/F7VETQ02.prw
+F7VETQ03.prw	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/GeradorDeEtiquetas/Fontes/Rotinas PRW/F7VETQ03.prw
+printThermalLabel.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/PRODUTOS_SEVEN/GeradorDeEtiquetas/Fontes/Rotinas TLPP/printThermalLabel.tlpp
+Showing 1 to 4 of 4 entries
+PREVIOUS1NEXT

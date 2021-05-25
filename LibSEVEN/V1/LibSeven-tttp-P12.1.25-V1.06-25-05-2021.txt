@@ -1,0 +1,60 @@
+Compilation Result
+
+Show 
+100
+ entries
+Search:
+File Name	Result	Message	Detail	Path
+ComponenteAutoExec.out	SKIPPED	File extension not allowed		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Temp/ComponenteAutoExec.out
+convAcolsToString.out	SKIPPED	File extension not allowed		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Temp/convAcolsToString.out
+7V_semFundo.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7V_semFundo.png
+7V_semFundo_Icone.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7V_semFundo_Icone.png
+7V_semFundo_Mini.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7V_semFundo_Mini.png
+7V_semFundo_Pequeno.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7V_semFundo_Pequeno.png
+7VIcone.bmp	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7VIcone.bmp
+7VLogo.bmp	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/7VLogo.bmp
+centralProcess.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas TLPP/centralProcess.tlpp
+Class7VArraysLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VArraysLib.tlpp
+Class7VAutoMVCLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VAutoMVCLib.tlpp
+Class7VConvDataLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VConvDataLib.tlpp
+Class7VDateTimeLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VDateTimeLib.tlpp
+Class7VExcelLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VExcelLib.tlpp
+Class7VFileLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VFileLib.tlpp
+Class7VFont.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VFont.tlpp
+Class7VGridColumnLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VGridColumnLib.tlpp
+Class7VGridLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VGridLib.tlpp
+Class7VLockLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VLockLib.tlpp
+Class7VLogLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VLogLib.tlpp
+Class7VMailLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VMailLib.tlpp
+Class7VMainLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VMainLib.tlpp
+Class7VNFeLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VNFeLib.tlpp
+Class7VNumericLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VNumericLib.tlpp
+Class7VParamBoxLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VParamBoxLib.tlpp
+Class7VParamLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VParamLib.tlpp
+Class7VPDFLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VPDFLib.tlpp
+Class7VSelectorLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VSelectorLib.tlpp
+Class7VSqlLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VSqlLib.tlpp
+Class7VStringsLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VStringsLib.tlpp
+Class7VTcBrowseLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VTcBrowseLib.tlpp
+Class7VUsersLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VUsersLib.tlpp
+Class7VUtilsLib.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VUtilsLib.tlpp
+executeFormulas.tlpp	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas TLPP/executeFormulas.tlpp
+F7VGEN02.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN02.prw
+F7VGEN03.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN03.prw
+F7VGEN04.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN04.prw
+F7VGEN05.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN05.prw
+F7VGEN06.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN06.prw
+F7VGEN07.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN07.prw
+F7VGEN08.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN08.prw
+F7VGEN09.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN09.prw
+F7VGEN11.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN11.prw
+F7VGEN12.prw	SUCCESS	Source compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN12.prw
+IconePDF.bmp	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/IconePDF.bmp
+IconePDF.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/IconePDF.png
+IconePDF_Icone.png	SUCCESS	Resource compiled successfully		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Resources/IconePDF_Icone.png
+Class7VAutoExecLib.tlpp	WARN	Source compiled with warnings and/or non fatal errors	CLASS7VAUTOEXECLIB.TLPP(128) warning W0003 Local variable ARETURN never used CLASS7VAUTOEXECLIB.TLPP(130) warning W0003 Local variable CREGCAB never used CLASS7VAUTOEXECLIB.TLPP(131) warning W0003 Local variable CREGDTCAB never used CLASS7VAUTOEXECLIB.TLPP(133) warning W0003 Local variable CREGDTITENS never used CLASS7VAUTOEXECLIB.TLPP(132) warning W0003 Local variable CREGITENS never used CLASS7VAUTOEXECLIB.TLPP(782) warning W0003 Local variable CALIASIT never used	c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Classes/Class7VAutoExecLib.tlpp
+F7VGEN01.prw	WARN	Source compiled with warnings and/or non fatal errors	F7VGEN01.PRW(294) warning W0003 Local variable CALIAS never used	c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN01.prw
+F7VGEN10.prw	WARN	Source compiled with warnings and/or non fatal errors	F7VGEN10.PRW(101) warning W0003 Local variable CCPOROTINA never used F7VGEN10.PRW(260) warning W0003 Local variable CALIAS never used	c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas PRW/F7VGEN10.prw
+sevenQueriesReports.tlpp	WARN	Source compiled with warnings and/or non fatal errors	SEVENQUERIESREPORTS.TLPP(114) warning W0003 Local variable CALIAS never used SEVENQUERIESREPORTS.TLPP(115) warning W0003 Local variable CALIASITEMS never used	c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/libSeven/ADVPL/Rotinas TLPP/sevenQueriesReports.tlpp
+Showing 1 to 51 of 51 entries
+PREVIOUS1NEXT

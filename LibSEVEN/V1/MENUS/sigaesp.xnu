@@ -4,22 +4,972 @@
 		<Version>10.1</Version>
 	</DocumentProperties>
 	<Menu Status="Enable">
-		<Title lang="pt">&TOTVS</Title>
-		<Title lang="es">TOTVS</Title>
-		<Title lang="en">TOTVS</Title>
+		<Title lang="pt">TOTVS IP</Title>
+		<Title lang="es">TOTVS IP</Title>
+		<Title lang="en">TOTVS IP</Title>
 		<ItemID>A970000001</ItemID>		
 		<Menu Status="Enable">
-			<Title lang="pt">ImpExpData</Title>
-			<Title lang="es">ImpExpData</Title>
-			<Title lang="en">ImpExpData</Title>
+			<Title lang="pt">Licenciador Ip</Title>
+			<Title lang="es">Licenciador Ip</Title>
+			<Title lang="en">Licenciador Ip</Title>
 			<MenuItem Status="Enable">
-				<Title lang="pt">Cad. Def. ImpExpData</Title>
-				<Title lang="es">Cad. Def. ImpExpData</Title>
-				<Title lang="en">Cad. Def. ImpExpData</Title>
+				<Title lang="pt">Gerador de Licenças Ip</Title>
+				<Title lang="es">Gerador de Licenças Ip</Title>
+				<Title lang="en">Gerador de Licenças Ip</Title>
+				<Function>IPMAKELICENSE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Gerador de Licenças Sms Ip</Title>
+				<Title lang="es">Gerador de Licenças Sms Ip</Title>
+				<Title lang="en">Gerador de Licenças Sms Ip</Title>
+				<Function>IPMAKESMSLICENSE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Visualiza Licenças Ip</Title>
+				<Title lang="es">Visualiza Licenças Ip</Title>
+				<Title lang="en">Visualiza Licenças Ip</Title>
+				<Function>IPLICENSEVIEW</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Exporta Licenças Ip</Title>
+				<Title lang="es">Exporta Licenças Ip</Title>
+				<Title lang="en">Exporta Licenças Ip</Title>
+				<Function>EXPORTIPLICENSE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample 01</Title>
+				<Title lang="es">Sample 01</Title>
+				<Title lang="en">Sample 01</Title>
+				<Function>IPLIC01SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample 02</Title>
+				<Title lang="es">Sample 02</Title>
+				<Title lang="en">Sample 02</Title>
+				<Function>IPLIC02SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample 03</Title>
+				<Title lang="es">Sample 03</Title>
+				<Title lang="en">Sample 03</Title>
+				<Function>IPLIC03SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample 04</Title>
+				<Title lang="es">Sample 04</Title>
+				<Title lang="en">Sample 04</Title>
+				<Function>IPLIC04SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample 05</Title>
+				<Title lang="es">Sample 05</Title>
+				<Title lang="en">Sample 05</Title>
+				<Function>IPLIC05SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample 06</Title>
+				<Title lang="es">Sample 06</Title>
+				<Title lang="en">Sample 06</Title>
+				<Function>IPLIC06SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample 07</Title>
+				<Title lang="es">Sample 07</Title>
+				<Title lang="en">Sample 07</Title>
+				<Function>IPLIC07SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample 08</Title>
+				<Title lang="es">Sample 08</Title>
+				<Title lang="en">Sample 08</Title>
+				<Function>IPLIC08SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample 09</Title>
+				<Title lang="es">Sample 09</Title>
+				<Title lang="en">Sample 09</Title>
+				<Function>IPLIC09SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+		</Menu>
+		<Menu Status="Enable">
+			<Title lang="pt">Libadvpl - Libtotvsip</Title>
+			<Title lang="es">Libadvpl - Libtotvsip</Title>
+			<Title lang="en">Libadvpl - Libtotvsip</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipbalanceobject</Title>
+				<Title lang="es">Sample Ipbalanceobject</Title>
+				<Title lang="en">Sample Ipbalanceobject</Title>
+				<Function>IPLIB01SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipenvironmentobject</Title>
+				<Title lang="es">Sample Ipenvironmentobject</Title>
+				<Title lang="en">Sample Ipenvironmentobject</Title>
+				<Function>IPLIB02SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipfileobject</Title>
+				<Title lang="es">Sample Ipfileobject</Title>
+				<Title lang="en">Sample Ipfileobject</Title>
+				<Function>IPLIB03SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample General 1</Title>
+				<Title lang="es">Sample General 1</Title>
+				<Title lang="en">Sample General 1</Title>
+				<Function>IPLIB04SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample General 2</Title>
+				<Title lang="es">Sample General 2</Title>
+				<Title lang="en">Sample General 2</Title>
+				<Function>IPLIB05SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipgridobject</Title>
+				<Title lang="es">Sample Ipgridobject</Title>
+				<Title lang="en">Sample Ipgridobject</Title>
+				<Function>IPLIB06SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipjobsobject</Title>
+				<Title lang="es">Sample Ipjobsobject</Title>
+				<Title lang="en">Sample Ipjobsobject</Title>
+				<Function>IPLIB07SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipjobsobject</Title>
+				<Title lang="es">Sample Ipjobsobject</Title>
+				<Title lang="en">Sample Ipjobsobject</Title>
+				<Function>IPLIB08SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipmailobject</Title>
+				<Title lang="es">Sample Ipmailobject</Title>
+				<Title lang="en">Sample Ipmailobject</Title>
+				<Function>IPLIB09SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipnumbersobject</Title>
+				<Title lang="es">Sample Ipnumbersobject</Title>
+				<Title lang="en">Sample Ipnumbersobject</Title>
+				<Function>IPLIB10SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipparamboxobject</Title>
+				<Title lang="es">Sample Ipparamboxobject</Title>
+				<Title lang="en">Sample Ipparamboxobject</Title>
+				<Function>IPLIB11SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ippdfobject</Title>
+				<Title lang="es">Sample Ippdfobject</Title>
+				<Title lang="en">Sample Ippdfobject</Title>
+				<Function>IPLIB12SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipsqlobject 1</Title>
+				<Title lang="es">Sample Ipsqlobject 1</Title>
+				<Title lang="en">Sample Ipsqlobject 1</Title>
+				<Function>IPLIB13SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipsqlobject 2</Title>
+				<Title lang="es">Sample Ipsqlobject 2</Title>
+				<Title lang="en">Sample Ipsqlobject 2</Title>
+				<Function>IPLIB14SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Iputilsobject</Title>
+				<Title lang="es">Sample Iputilsobject</Title>
+				<Title lang="en">Sample Iputilsobject</Title>
+				<Function>IPLIB15SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipwsrestobject</Title>
+				<Title lang="es">Sample Ipwsrestobject</Title>
+				<Title lang="en">Sample Ipwsrestobject</Title>
+				<Function>IPLIB16SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipxmlobject</Title>
+				<Title lang="es">Sample Ipxmlobject</Title>
+				<Title lang="en">Sample Ipxmlobject</Title>
+				<Function>IPLIB17SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipselectorobject</Title>
+				<Title lang="es">Sample Ipselectorobject</Title>
+				<Title lang="en">Sample Ipselectorobject</Title>
+				<Function>IPLIB18SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipautonumberobject</Title>
+				<Title lang="es">Sample Ipautonumberobject</Title>
+				<Title lang="en">Sample Ipautonumberobject</Title>
+				<Function>IPLIB19SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipchkconfigobject</Title>
+				<Title lang="es">Sample Ipchkconfigobject</Title>
+				<Title lang="en">Sample Ipchkconfigobject</Title>
+				<Function>IPLIB20SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sample Ipparamboxobject</Title>
+				<Title lang="es">Sample Ipparamboxobject</Title>
+				<Title lang="en">Sample Ipparamboxobject</Title>
+				<Function>IPLIB21SAMPLE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+		</Menu>
+		<Menu Status="Enable">
+			<Title lang="pt">Sugestao de Compras</Title>
+			<Title lang="es">Sugestao de Compras</Title>
+			<Title lang="en">Sugestao de Compras</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Sugestao de Compras</Title>
+				<Title lang="es">Sugestao de Compras</Title>
+				<Title lang="en">Sugestao de Compras</Title>
+				<Function>SUGCOMPRAS</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt">                         </KeyWord>
+					<KeyWord lang="es">                         </KeyWord>
+					<KeyWord lang="en">                         </KeyWord>
+				</KeyWord>
+			</MenuItem>
+		</Menu>
+		<Menu Status="Enable">
+			<Title lang="pt">Boleto Bancário Agile</Title>
+			<Title lang="es">Boleto Bancário Agile</Title>
+			<Title lang="en">Boleto Bancário Agile</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Boleto Bancário</Title>
+				<Title lang="es">Boleto Bancário</Title>
+				<Title lang="en">Boleto Bancário</Title>
+				<Function>BOLETO</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Manutenção de Boletos</Title>
+				<Title lang="es">Manutenção de Boletos</Title>
+				<Title lang="en">Manutenção de Boletos</Title>
+				<Function>MANBOL</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>2</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+		</Menu>
+		<Menu Status="Enable">
+			<Title lang="pt">Totvs Ip Tools</Title>
+			<Title lang="es">Totvs Ip Tools</Title>
+			<Title lang="en">Totvs Ip Tools</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Atualiza Base</Title>
+				<Title lang="es">Atualiza Base</Title>
+				<Title lang="en">Atualiza Base</Title>
+				<Function>UPDSEL</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Casas Decimais</Title>
+				<Title lang="es">Casas Decimais</Title>
+				<Title lang="en">Casas Decimais</Title>
+				<Function>CASASDEC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Limpa Base</Title>
+				<Title lang="es">Limpa Base</Title>
+				<Title lang="en">Limpa Base</Title>
+				<Function>LIMPABASE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Processa Queries</Title>
+				<Title lang="es">Processa Queries</Title>
+				<Title lang="en">Processa Queries</Title>
+				<Function>PROCQUERY</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Copia Dic.  Online</Title>
+				<Title lang="es">Copia Dic. Online</Title>
+				<Title lang="en">Copia Dic. Online</Title>
+				<Function>COPDIC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Replica Dic. Online</Title>
+				<Title lang="es">Replica Dic. Online</Title>
+				<Title lang="en">Replica Dic. Online</Title>
+				<Function>REPDIC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Teste Xml Ct-e</Title>
+				<Title lang="es">Teste Xml Ct-e</Title>
+				<Title lang="en">Teste Xml Ct-e</Title>
+				<Function>TSTXMLCTE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Teste Xml Nf-e</Title>
+				<Title lang="es">Teste Xml Nf-e</Title>
+				<Title lang="en">Teste Xml Nf-e</Title>
+				<Function>TSTDANFE</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Wizard de Parâmetros</Title>
+				<Title lang="es">Wizard de Parâmetros</Title>
+				<Title lang="en">Wizard de Parâmetros</Title>
+				<Function>WIZPARAMIP</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+		</Menu>
+		<Menu Status="Enable">
+			<Title lang="pt">Imp. Exp. de Dados Em Massa (impexpdata)</Title>
+			<Title lang="es">Imp. Exp. de Dados Em Massa (impexpdata)</Title>
+			<Title lang="en">Imp. Exp. de Dados Em Massa (impexpdata)</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Esp. Impexpdin</Title>
+				<Title lang="es">Cad. Esp. Impexpdin</Title>
+				<Title lang="en">Cad. Esp. Impexpdin</Title>
+				<Function>CADESPDIN</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Imp. Dados Dinâmico</Title>
+				<Title lang="es">Imp. Dados Dinâmico</Title>
+				<Title lang="en">Imp. Dados Dinâmico</Title>
+				<Function>IMPDIN</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Exp. Dados Dinâmico</Title>
+				<Title lang="es">Exp. Dados Dinâmico</Title>
+				<Title lang="en">Exp. Dados Dinâmico</Title>
+				<Function>EXPDIN</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Def. Impexpdata</Title>
+				<Title lang="es">Cad. Def. Impexpdata</Title>
+				<Title lang="en">Cad. Def. Impexpdata</Title>
 				<Function>DEFIEDAT</Function>
 				<Type>03</Type>
 				<Access>xxxxxxxxxx</Access>
-				<Module>98</Module>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Perg. Impexpdata</Title>
+				<Title lang="es">Cad. Perg. Impexpdata</Title>
+				<Title lang="en">Cad. Perg. Impexpdata</Title>
+				<Function>PERIEDAT</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Logs Impexpdata</Title>
+				<Title lang="es">Cad. Logs Impexpdata</Title>
+				<Title lang="en">Cad. Logs Impexpdata</Title>
+				<Function>LOGIEDAT</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Executa Impexpdata</Title>
+				<Title lang="es">Executa Impexpdata</Title>
+				<Title lang="en">Executa Impexpdata</Title>
+				<Function>RUNIEDAT</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Lib. Rotinas ImpExpDin</Title>
+				<Title lang="es">Lib. Rotinas ImpExpDin</Title>
+				<Title lang="en">Lib. Rotinas ImpExpDin</Title>
+				<Function>GERIELIC</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>			
+		</Menu>
+		<Menu Status="Enable">
+			<Title lang="pt">Validador Xml</Title>
+			<Title lang="es">Validador Xml</Title>
+			<Title lang="en">Validador Xml</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. de Regras Xml</Title>
+				<Title lang="es">Cad. de Regras Xml</Title>
+				<Title lang="en">Cad. de Regras Xml</Title>
+				<Function>VALRULES</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Log Div. Xml</Title>
+				<Title lang="es">Log Div. Xml</Title>
+				<Title lang="en">Log Div. Xml</Title>
+				<Function>VALLOGS</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Campos Regras Xml</Title>
+				<Title lang="es">Cad. Campos Regras Xml</Title>
+				<Title lang="en">Cad. Campos Regras Xml</Title>
+				<Function>VALCPOS</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+		</Menu>
+		<Menu Status="Enable">
+			<Title lang="pt">Modelos de Relatórios</Title>
+			<Title lang="es">Modelos de Relatórios</Title>
+			<Title lang="en">Modelos de Relatórios</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Rel. Cot. Compras</Title>
+				<Title lang="es">Rel. Cot. Compras</Title>
+				<Title lang="en">Rel. Cot. Compras</Title>
+				<Function>MSRCOT01</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Rel. Orc. Vendas</Title>
+				<Title lang="es">Rel. Orc. Vendas</Title>
+				<Title lang="en">Rel. Orc. Vendas</Title>
+				<Function>MSRORC01</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Rel. Pedido de Compra</Title>
+				<Title lang="es">Rel. Pedido de Compra</Title>
+				<Title lang="en">Rel. Pedido de Compra</Title>
+				<Function>MSRCOM</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Rel. Pedido de Venda</Title>
+				<Title lang="es">Rel. Pedido de Venda</Title>
+				<Title lang="en">Rel. Pedido de Venda</Title>
+				<Function>MSRFAT01</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Rel. Ordem de Producao</Title>
+				<Title lang="es">Rel. Ordem de Producao</Title>
+				<Title lang="en">Rel. Ordem de Producao</Title>
+				<Function>FSWIMPOP</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>97</Module>
 				<Owner>0</Owner>
 				<KeyWord>
 					<KeyWord lang="pt"></KeyWord>
@@ -35,9 +985,9 @@
 		<Title lang="en">SEVEN</Title>
 		<ItemID>A970000001</ItemID>		
 		<Menu Status="Enable">
-			<Title lang="pt">Ferramentas Seven</Title>
-			<Title lang="es">Ferramentas Seven</Title>
-			<Title lang="en">Ferramentas Seven</Title>
+			<Title lang="pt">Ferramentas SEVEN</Title>
+			<Title lang="es">Ferramentas SEVEN</Title>
+			<Title lang="en">Ferramentas SEVEN</Title>
 			<MenuItem Status="Enable">
 				<Title lang="pt">Fórmulas Seven</Title>
 				<Title lang="es">Fórmulas Seven</Title>
@@ -172,12 +1122,277 @@
 					<KeyWord lang="es"></KeyWord>
 					<KeyWord lang="en"></KeyWord>
 				</KeyWord>
-			</MenuItem>	
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cadastro de Grupo de Parâmetros</Title>
+				<Title lang="es">Cadastro de Grupo de Parâmetros</Title>
+				<Title lang="en">Cadastro de Grupo de Parâmetros</Title>
+				<Function>F7VGEN09</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cadastro de Rotinas Automáticas</Title>
+				<Title lang="es">Cadastro de Rotinas Automáticas</Title>
+				<Title lang="en">Cadastro de Rotinas Automáticas</Title>
+				<Function>F7VGEN10</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Grupo Dic. Campos</Title>
+				<Title lang="es">Cad. Grupo Dic. Campos</Title>
+				<Title lang="en">Cad. Grupo Dic. Campos</Title>
+				<Function>F7VGEN11</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Grupo De-Para de Campos</Title>
+				<Title lang="es">Cad. Grupo De-Para de Campos</Title>
+				<Title lang="en">Cad. Grupo De-Para de Campos</Title>
+				<Function>F7VGEN12</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>			
 		</Menu>
 		<Menu Status="Enable">
-			<Title lang="pt">Validador XML</Title>
-			<Title lang="es">Validador XML</Title>
-			<Title lang="en">Validador XML</Title>
+			<Title lang="pt">Boleto Bancário SEVEN</Title>
+			<Title lang="es">Boleto Bancário SEVEN</Title>
+			<Title lang="en">Boleto Bancário SEVEN</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Boleto Bancário SEVEN</Title>
+				<Title lang="es">Boleto Bancário SEVEN</Title>
+				<Title lang="en">Boleto Bancário SEVEN</Title>
+				<Function>produtosSeven.u_executeBoletoBancarioSeven</Function>
+				<Type>01</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>			
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Def. do Boleto</Title>
+				<Title lang="es">Cad. Def. do Boleto</Title>
+				<Title lang="en">Cad. Def. do Boleto</Title>
+				<Function>F7VBOL01</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Regras do Boleto</Title>
+				<Title lang="es">Cad. Regras do Boleto</Title>
+				<Title lang="en">Cad. Regras do Boleto</Title>
+				<Function>F7VBOL02</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Mensagens do Boleto</Title>
+				<Title lang="es">Cad. Mensagens do Boleto</Title>
+				<Title lang="en">Cad. Mensagens do Boleto</Title>
+				<Function>F7VBOL03</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Monitor Boletos Gerados</Title>
+				<Title lang="es">Monitor Boletos Gerados</Title>
+				<Title lang="en">Monitor Boletos Gerados</Title>
+				<Function>F7VBOL04</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Agendamento Boletos</Title>
+				<Title lang="es">Cad. Agendamento Boletos</Title>
+				<Title lang="en">Cad. Agendamento Boletos</Title>
+				<Function>F7VBOL05</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cadastro de Queries</Title>
+				<Title lang="es">Cadastro de Queries</Title>
+				<Title lang="en">Cadastro de Queries</Title>
+				<Function>F7VGEN05</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Grupo Dic. Campos</Title>
+				<Title lang="es">Cad. Grupo Dic. Campos</Title>
+				<Title lang="en">Cad. Grupo Dic. Campos</Title>
+				<Function>F7VGEN11</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>			
+		</Menu>
+		<Menu Status="Enable">
+			<Title lang="pt">Gerador de Etiquetas SEVEN</Title>
+			<Title lang="es">Gerador de Etiquetas SEVEN</Title>
+			<Title lang="en">Gerador de Etiquetas SEVEN</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Definições de Etiquetas</Title>
+				<Title lang="es">Cad. Definições de Etiquetas</Title>
+				<Title lang="en">Cad. Definições de Etiquetas</Title>
+				<Function>F7VETQ01</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cad. Layout de Etiquetas</Title>
+				<Title lang="es">Cad. Layout de Etiquetas</Title>
+				<Title lang="en">Cad. Layout de Etiquetas</Title>
+				<Function>F7VETQ02</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Log de Etiquetas Geradas</Title>
+				<Title lang="es">Log de Etiquetas Geradas</Title>
+				<Title lang="en">Log de Etiquetas Geradas</Title>
+				<Function>F7VETQ03</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cadastro de Queries</Title>
+				<Title lang="es">Cadastro de Queries</Title>
+				<Title lang="en">Cadastro de Queries</Title>
+				<Function>F7VGEN05</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Central de Processos</Title>
+				<Title lang="es">Central de Processos</Title>
+				<Title lang="en">Central de Processos</Title>
+				<Function>libSeven.u_executeCentralProcess</Function>
+				<Type>01</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+		</Menu>
+		<Menu Status="Enable">
+			<Title lang="pt">Validador XML SEVEN</Title>
+			<Title lang="es">Validador XML SEVEN</Title>
+			<Title lang="en">Validador XML SEVEN</Title>
 			<MenuItem Status="Enable">
 				<Title lang="pt">Cadastro de Campos das Regras</Title>
 				<Title lang="es">Cadastro de Campos das Regras</Title>
@@ -464,15 +1679,105 @@
 					<KeyWord lang="en">Product,item,bidder,participant,company</KeyWord>
 				</KeyWord>
 			</MenuItem>
-		</Menu>
+		</Menu>	
+	</Menu>
+	<Menu Status="Enable">
+		<Title lang="pt">ERNANI FORASTIERI</Title>
+		<Title lang="es">ERNANI FORASTIERI</Title>
+		<Title lang="en">ERNANI FORASTIERI</Title>
 		<Menu Status="Enable">
-			<Title lang="pt">Workflow</Title>
-			<Title lang="es">Workflow</Title>
-			<Title lang="en">Workflow</Title>
+			<Title lang="pt">Ferramentas ERNANI FORASTIERI</Title>
+			<Title lang="es">Ferramentas ERNANI FORASTIERI</Title>
+			<Title lang="en">Ferramentas ERNANI FORASTIERI</Title>
+			<MenuItem Status="Enable">			
+				<Title lang="pt">ExporDic</Title>
+				<Title lang="es">ExporDic</Title>
+				<Title lang="en">ExporDic</Title>
+				<Function>ExporDic</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
 			<MenuItem Status="Enable">
-				<Title lang="pt">Cadastro</Title>
-				<Title lang="es">Cadastro</Title>
-				<Title lang="en">Cadastro</Title>
+				<Title lang="pt">FsBitMap</Title>
+				<Title lang="es">FsBitMap</Title>
+				<Title lang="en">FsBitMap</Title>
+				<Function>FsBitMap</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">FsEnvMail</Title>
+				<Title lang="es">FsEnvMail</Title>
+				<Title lang="en">FsEnvMail</Title>
+				<Function>FsEnvMail</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">FsFontes</Title>
+				<Title lang="es">FsFontes</Title>
+				<Title lang="en">FsFontes</Title>
+				<Function>FsFontes</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+			<MenuItem Status="Enable">
+				<Title lang="pt">FSTopRepair</Title>
+				<Title lang="es">FSTopRepair</Title>
+				<Title lang="en">FSTopRepair</Title>
+				<Function>FSTopRepair</Function>
+				<Type>03</Type>
+				<Access>xxxxxxxxxx</Access>
+				<Module>98</Module>
+				<Owner>0</Owner>
+				<KeyWord>
+					<KeyWord lang="pt"></KeyWord>
+					<KeyWord lang="es"></KeyWord>
+					<KeyWord lang="en"></KeyWord>
+				</KeyWord>
+			</MenuItem>
+		</Menu>
+	</Menu>
+	<Menu Status="Enable">
+		<Title lang="pt">Modelos de Clientes</Title>
+		<Title lang="es">Modelos de Clientes</Title>
+		<Title lang="en">Modelos de Clientes</Title>
+		<Menu Status="Enable">
+			<Title lang="pt">Workflow de Cadastros MAFRA</Title>
+			<Title lang="es">Workflow de Cadastros MAFRA</Title>
+			<Title lang="en">Workflow de Cadastros MAFRA</Title>
+			<MenuItem Status="Enable">
+				<Title lang="pt">Cadastro de Setores</Title>
+				<Title lang="es">Cadastro de Setores</Title>
+				<Title lang="en">Cadastro de Setores</Title>
 				<Function>CMAFAT01</Function>
 				<Type>03</Type>
 				<Access>xxxxxxxxxx</Access>
@@ -499,89 +1804,62 @@
 					<KeyWord lang="en"></KeyWord>
 				</KeyWord>
 			</MenuItem>				
-		</Menu>		
-	</Menu>	
-	<Menu Status="Enable">
-		<Title lang="pt">&eCommerce</Title>
-		<Title lang="es">eCommerce</Title>
-		<Title lang="en">eCommerce</Title>
+		</Menu>
 		<Menu Status="Enable">
-			<Title lang="pt">Mon. Integração</Title>
-			<Title lang="es">Mon. Integração</Title>
-			<Title lang="en">Mon. Integração</Title>
-			<MenuItem Status="Enable">
-				<Title lang="pt">Integrador Genérico</Title>
-				<Title lang="es">Integrador Genérico</Title>
-				<Title lang="en">Integrador Genérico</Title>
-				<Function>USAGEN02</Function>
-				<Type>03</Type>
-				<Access>xxxxxxxxxx</Access>
-				<Module>98</Module>
-				<Owner>0</Owner>
-				<KeyWord>
-					<KeyWord lang="pt"></KeyWord>
-					<KeyWord lang="es"></KeyWord>
-					<KeyWord lang="en"></KeyWord>
-				</KeyWord>
-			</MenuItem>
-			<MenuItem Status="Enable">
-				<Title lang="pt">Mon.Int. Clientes</Title>
-				<Title lang="es">Mon.Int. Clientes</Title>
-				<Title lang="en">Mon.Int. Clientes</Title>
-				<Function>USAFAT01</Function>
-				<Type>03</Type>
-				<Access>xxxxxxxxxx</Access>
-				<Module>98</Module>
-				<Owner>0</Owner>
-				<KeyWord>
-					<KeyWord lang="pt"></KeyWord>
-					<KeyWord lang="es"></KeyWord>
-					<KeyWord lang="en"></KeyWord>
-				</KeyWord>
-			</MenuItem>
-			<MenuItem Status="Enable">
-				<Title lang="pt">Mon.Int. Pedidos</Title>
-				<Title lang="es">Mon.Int. Pedidos</Title>
-				<Title lang="en">Mon.Int. Pedidos</Title>
-				<Function>USAFAT02</Function>
-				<Type>03</Type>
-				<Access>xxxxxxxxxx</Access>
-				<Module>98</Module>
-				<Owner>0</Owner>
-				<KeyWord>
-					<KeyWord lang="pt"></KeyWord>
-					<KeyWord lang="es"></KeyWord>
-					<KeyWord lang="en"></KeyWord>
-				</KeyWord>
-			</MenuItem>
-			<MenuItem Status="Enable">
-				<Title lang="pt">Mon.Int. Estoque</Title>
-				<Title lang="es">Mon.Int. Estoque</Title>
-				<Title lang="en">Mon.Int. Estoque</Title>
-				<Function>USAFAT03</Function>
-				<Type>03</Type>
-				<Access>xxxxxxxxxx</Access>
-				<Module>98</Module>
-				<Owner>0</Owner>
-				<KeyWord>
-					<KeyWord lang="pt"></KeyWord>
-					<KeyWord lang="es"></KeyWord>
-					<KeyWord lang="en"></KeyWord>
-				</KeyWord>
-			</MenuItem>
+			<Title lang="pt">&eCommerce USA</Title>
+			<Title lang="es">eCommerce USA</Title>
+			<Title lang="en">eCommerce USA</Title>
+			<Menu Status="Enable">
+				<Title lang="pt">Mon. Integração</Title>
+				<Title lang="es">Mon. Integração</Title>
+				<Title lang="en">Mon. Integração</Title>
+				<MenuItem Status="Enable">
+					<Title lang="pt">Integrador Genérico</Title>
+					<Title lang="es">Integrador Genérico</Title>
+					<Title lang="en">Integrador Genérico</Title>
+					<Function>USAGEN02</Function>
+					<Type>03</Type>
+					<Access>xxxxxxxxxx</Access>
+					<Module>98</Module>
+					<Owner>0</Owner>
+					<KeyWord>
+						<KeyWord lang="pt"></KeyWord>
+						<KeyWord lang="es"></KeyWord>
+						<KeyWord lang="en"></KeyWord>
+					</KeyWord>
+				</MenuItem>
+				<MenuItem Status="Enable">
+					<Title lang="pt">Mon.Int. Pedidos</Title>
+					<Title lang="es">Mon.Int. Pedidos</Title>
+					<Title lang="en">Mon.Int. Pedidos</Title>
+					<Function>USAFAT02</Function>
+					<Type>03</Type>
+					<Access>xxxxxxxxxx</Access>
+					<Module>98</Module>
+					<Owner>0</Owner>
+					<KeyWord>
+						<KeyWord lang="pt"></KeyWord>
+						<KeyWord lang="es"></KeyWord>
+						<KeyWord lang="en"></KeyWord>
+					</KeyWord>
+				</MenuItem>
+				<MenuItem Status="Enable">
+					<Title lang="pt">Mon.Int. Estoque</Title>
+					<Title lang="es">Mon.Int. Estoque</Title>
+					<Title lang="en">Mon.Int. Estoque</Title>
+					<Function>USAFAT03</Function>
+					<Type>03</Type>
+					<Access>xxxxxxxxxx</Access>
+					<Module>98</Module>
+					<Owner>0</Owner>
+					<KeyWord>
+						<KeyWord lang="pt"></KeyWord>
+						<KeyWord lang="es"></KeyWord>
+						<KeyWord lang="en"></KeyWord>
+					</KeyWord>
+				</MenuItem>
+			</Menu>		
 		</Menu>		
-	</Menu>
-	<Menu Status="Enable">
-		<Title lang="pt">&Consultas</Title>
-		<Title lang="es">&Consultas</Title>
-		<Title lang="en">&Queries</Title>
-		<ItemID>A970000002</ItemID>
-	</Menu>
-	<Menu Status="Enable">
-		<Title lang="pt">&Relatorios</Title>
-		<Title lang="es">&Informes</Title>
-		<Title lang="en">&Reports</Title>
-		<ItemID>A970000003</ItemID>
 	</Menu>
 	<Menu Status="Enable">
 		<Title lang="pt">&Miscelanea</Title>
