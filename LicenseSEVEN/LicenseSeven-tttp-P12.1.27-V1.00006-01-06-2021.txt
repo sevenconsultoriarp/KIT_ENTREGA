@@ -1,0 +1,10 @@
+Compilation Result
+
+Show 
+50
+ entries
+Search:
+File Name	Result	Message	Detail	Path
+Class7VLicenseLib.tlpp	SKIPPED	Source already compiled		c:/TOTVS/workspace/SEVEN/FRAMEWORK_SEVEN/licenseSeven/Class7VLicenseLib.tlpp
+Showing 1 to 1 of 1 entries
+PREVIOUS1NEXT
